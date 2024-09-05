@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Sidebar</title>
+    <script src="../../assets/tailwind/tailwind.js"></script>
+    <link rel="stylesheet" href="../../assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/style.css">
+    <link rel="stylesheet" href="../../assets/aos/aos.css">
+    <style>
+        /* Show dropdown on button hover */
+        .relative:hover .dropdown-content {
+            display: block;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-white flex flex-col min-h-screen">
+
+    <!-- Mobile Toggle Button -->
+    <div class="md:hidden p-4 flex justify-end">
+        <button id="toggleButton" class="text-gray-400 focus:outline-none">
+            <i class="fas fa-bars fa-2x"></i>
+        </button>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="fixed inset-y-0 left-0 w-64 transform -translate-x-full md:translate-x-0 transition-transform duration-200 bg-gray-800 p-6">
+        <div class="flex flex-col h-full">
+            <!-- Profile and Brand -->
+            <div class="flex items-center mb-6 profile-brand pb-4 border-b border-gray-700">
+                <!-- Profile Image -->
+                <img src="../../img/profile.jpg" alt="Profile" class="profile-img mr-3">
+                <!-- Brand Name -->
+                <div>
+                    <h2 class="text-xl font-semibold glow-icon text-white">Muhamad Aldiansyah</h2>
+                </div>
+            </div>
+
+            <!-- Search Box -->
+            <div class="mb-6">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search..." class="search-input">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+            </div>
+
+            <!-- Menu Items -->
+            <ul id="menuList" class="flex-1 space-y-3">
+                <!-- Dashboard -->
+                <li class="menu-item">
+                    <div>
+                        <button class="flex items-center justify-between w-full p-2 rounded" data-toggle="submenu" data-target="dashboard">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span class="menu">Dashboard</span>
+                            </div>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <ul id="dashboard" class="submenu mt-2 ml-6 hidden">
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../../index.html" class="w-full p-1 rounded">Dashboard v1</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../../index2.html" class="w-full p-1 rounded">Dashboard v2</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../../index3.html" class="w-full p-1 rounded">Dashboard v3</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="menu-item">
+                    <div>
+                        <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="Uielement">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-layer-group"></i>
+                                <span>UI Element</span>
+                            </div>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <ul id="Uielement" class="mt-2 ml-6 space-y-1 hidden">
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="general.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">General</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="icon.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Icon</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="button.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Button</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="modal.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Modals And Alert</a></li>
+                        </ul>
+                    </div>
+                </li>
+                
+                <li class="menu-item">
+                    <a href="../widget/widget.html" class="flex items-center space-x-2 p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span class="menu flex-1 flex items-center justify-between">
+                            Widget
+                            <span class="ml-2 flex items-center bg-red-500 text-white px-2 py-0.5 rounded-full text-xs font-semibold">
+                                <i class="fas fa-star mr-1"></i> New
+                            </span>
+                        </span>
+                    </a>
+                </li>      
+                
+                <!-- Chart with Submenu -->
+                <li class="menu-item">
+                <div>
+                    <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="Chart">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Chart</span>
+                        </div>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <ul id="Chart" class="mt-2 ml-6 space-y-1 hidden">
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../../pages/chart/line.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Line</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../../pages/chart/pie.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Pie</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../../pages/chart/bar.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Bar</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../../pages/chart/area.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Area</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../../pages/chart/donut.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Donut</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../../pages/chart/stackedbar.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Stacked Bar</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../../pages/chart/interactivearea.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Interactive Area</a></li>
+                    </ul>
+                </div>
+                </li>
+
+              <!-- Form with Submenu -->
+              <li class="menu-item">
+                <div>
+                    <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="formSubmenu">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-edit"></i>
+                            <span>Form</span>
+                        </div>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <ul id="formSubmenu" class="mt-2 ml-6 space-y-1 hidden">
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../form/form.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Form 1</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../form/forms.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Form 2</a></li>
+                    </ul>
+                </div>
+                </li>
+                
+                <!-- Table with Submenu -->
+                <li class="menu-item">
+                <div>
+                    <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="tableSubmenu">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-table"></i>
+                            <span>Table</span>
+                        </div>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <ul id="tableSubmenu" class="mt-2 ml-6 space-y-1 hidden">
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../table/show-search.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Show Search</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../table/checkbox.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table CheckBox</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../table/making-doc.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Making Doc</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../table/modal-recycle.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Modal Recycle</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../table/select2.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Select2</a></li>
+                    </ul>
+                </div>
+                </li>
+            </ul>
+
+            <!-- Logout Button -->
+            <div class="menu-item mt-6">
+                <a href="#" class="flex items-center space-x-2 p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- End Sidebar -->
+
+    <!-- Content Area -->
+    <div class="ml-0 md:ml-64 p-6 flex-1">
+        <!-- Header with aligned text -->
+        <div class="flex justify-between items-center">
+            <h1 class="text-2xl md:text-3xl">Button</h1>
+            <p class="text-sm md:text-lg text-gray-400">UI Element / Button.</p>
+        </div>
+
+        <!-- Button Types Showcase -->
+        <div class="bg-gray-900 rounded-lg shadow-xl p-6 md:p-8" data-aos="fade-up" data-aos-delay="400">
+            <h2 class="text-3xl font-bold text-white mb-4 md:mb-6" data-aos="fade-up" data-aos-delay="400">Button Types in Tailwind CSS</h2>
+            <p class="text-lg text-gray-400 mb-6" data-aos="fade-up" data-aos-delay="400">Explore a variety of button styles available with Tailwind CSS. Click each button to see its style and effect.</p>
+
+            <!-- Button Examples -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8" data-aos="fade-up" data-aos-delay="400">
+                <!-- Default Button -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <button class="bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300" data-aos="fade-up" data-aos-delay="400">Default Button</button>
+                </div>
+
+                <!-- Outline Button -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <button class="border border-blue-500 text-blue-500 font-semibold py-2 px-4 rounded-lg hover:bg-blue-500 hover:text-white transition duration-300">Outline Button</button>
+                </div>
+
+                <!-- Ghost Button -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <button class="bg-transparent text-blue-500 font-semibold py-2 px-4 rounded-lg border border-blue-500 hover:bg-blue-100 transition duration-300">Ghost Button</button>
+                </div>
+
+                <!-- Disabled Button -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <button class="bg-gray-500 text-gray-300 font-semibold py-2 px-4 rounded-lg cursor-not-allowed" disabled>Disabled Button</button>
+                </div>
+
+                <!-- Icon Button -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <button class="bg-green-500 text-white font-semibold py-2 px-4 rounded-lg flex items-center space-x-2 hover:bg-green-600 transition duration-300">
+                        <i class="fas fa-check"></i>
+                        <span>Icon Button</span>
+                    </button>
+                </div>
+
+                <!-- Button with Loading State -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <button class="bg-red-500 text-white font-semibold py-2 px-4 rounded-lg flex items-center space-x-2 hover:bg-red-600 transition duration-300">
+                        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v2a6 6 0 00-6 6H4zm12-6a8 8 0 010 12v-2a6 6 0 000-12h-2z"></path></svg>
+                        <span>Loading...</span>
+                    </button>
+                </div>
+
+                <!-- Rounded Button -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <button class="bg-purple-500 text-white font-semibold py-2 px-6 rounded-full hover:bg-purple-600 transition duration-300">Rounded Button</button>
+                </div>
+
+                <!-- Button with Shadow -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <button class="bg-teal-500 text-white font-semibold py-2 px-4 rounded-lg shadow-lg hover:bg-teal-600 transition duration-300">Button with Shadow</button>
+                </div>
+
+                <!-- Button with Gradient -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <button class="bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white font-semibold py-2 px-4 rounded-lg hover:from-indigo-600 hover:via-purple-600 hover:to-pink-600 transition duration-300">Gradient Button</button>
+                </div>
+
+                <!-- Button with Icon Only -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <button class="bg-yellow-500 text-white font-semibold p-2 rounded-full hover:bg-yellow-600 transition duration-300">
+                        <i class="fas fa-star"></i>
+                    </button>
+                </div>
+
+                <!-- Button with Icon and Text -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <button class="bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg flex items-center space-x-2 hover:bg-gray-700 transition duration-300">
+                        <i class="fas fa-info-circle"></i>
+                        <span>Info Button</span>
+                    </button>
+                </div>
+
+                <!-- Button with Hover Effect -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <button class="bg-pink-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-pink-600 transform hover:scale-105 transition duration-300">Hover Effect</button>
+                </div>
+
+                <!-- Button with Tooltip -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md relative group" data-aos="fade-up" data-aos-delay="400">
+                    <button class="bg-orange-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-orange-600 transition duration-300">
+                        Tooltip Button
+                    </button>
+                    <div class="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 w-max bg-gray-800 text-white text-xs rounded-lg py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                        Tooltip text here
+                    </div>
+                </div>
+
+                <!-- Button with Outline and Icon -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <button class="border border-teal-500 text-teal-500 font-semibold py-2 px-4 rounded-lg flex items-center space-x-2 hover:bg-teal-500 hover:text-white transition duration-300">
+                        <i class="fas fa-tag"></i>
+                        <span>Outline Icon Button</span>
+                    </button>
+                </div>
+
+                <!-- Button with Custom Color -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <button class="bg-[#FF5722] text-white font-semibold py-2 px-4 rounded-lg hover:bg-[#E64A19] transition duration-300">Custom Color Button</button>
+                </div>
+
+                <!-- Extra Button Styles -->
+                <!-- Small Button -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <button class="bg-blue-700 text-white font-semibold py-1 px-2 rounded-lg hover:bg-blue-800 transition duration-300 text-sm">Small Button</button>
+                </div>
+
+                <!-- Large Button -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <button class="bg-indigo-500 text-white font-semibold py-3 px-6 rounded-lg hover:bg-indigo-600 transition duration-300 text-lg">Large Button</button>
+                </div>
+
+                <!-- Button with Border Radius -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <button class="bg-red-500 text-white font-semibold py-2 px-4 rounded-xl hover:bg-red-600 transition duration-300">Border Radius Button</button>
+                </div>
+
+                <!-- Button with Icon and Loading State -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <button class="bg-teal-500 text-white font-semibold py-2 px-4 rounded-lg flex items-center space-x-2 hover:bg-teal-600 transition duration-300">
+                        <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v2a6 6 0 00-6 6H4zm12-6a8 8 0 010 12v-2a6 6 0 000-12h-2z"></path></svg>
+                        <span>Loading...</span>
+                    </button>
+                </div>
+
+                <!-- Button with Disabled State and Icon -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <button class="bg-gray-500 text-gray-300 font-semibold py-2 px-4 rounded-lg flex items-center space-x-2 cursor-not-allowed" disabled>
+                        <i class="fas fa-lock"></i>
+                        <span>Disabled Icon Button</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Appended Buttons Showcase -->
+        <div class="bg-gray-900 rounded-lg shadow-xl p-6 md:p-8" data-aos="fade-up" data-aos-delay="400">
+            <h2 class="text-3xl font-bold text-white mb-4 md:mb-6" data-aos="fade-up" data-aos-delay="400">Appended Buttons in Tailwind CSS</h2>
+            <p class="text-lg text-gray-400 mb-6" data-aos="fade-up" data-aos-delay="400">Explore different styles of appended buttons with Tailwind CSS. Appended buttons include additional elements like icons or text beside the button itself.</p>
+
+            <!-- Appended Button Examples -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 md:gap-8">
+                <!-- Button with Icon Append -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center space-x-2">
+                        <button class="bg-blue-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-600 transition duration-300">Button</button>
+                        <i class="fas fa-arrow-right text-blue-500 text-xl"></i>
+                    </div>
+                </div>
+
+                <!-- Button with Text Append -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center space-x-2">
+                        <button class="bg-green-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-green-600 transition duration-300">Button</button>
+                        <span class="text-green-500 text-lg">Next</span>
+                    </div>
+                </div>
+                <!-- Button with Dropdown Append -->
+                <div class="relative flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center space-x-2">
+                        <button class="bg-purple-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-purple-600 transition duration-300">Button</button>
+                        <button class="bg-gray-700 text-white font-semibold py-2 px-4 rounded-lg hover:bg-gray-600">
+                            <i class="fas fa-chevron-down"></i>
+                        </button>
+                    </div>
+                    <div class="absolute right-0 mt-2 w-48 bg-gray-800 border border-gray-700 rounded-lg shadow-lg hidden dropdown-content">
+                        <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Option 1</a>
+                        <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Option 2</a>
+                        <a href="#" class="block px-4 py-2 text-gray-300 hover:bg-gray-700">Option 3</a>
+                    </div>
+                </div>
+                <!-- Button with Icon and Text Append -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center space-x-2">
+                        <button class="bg-teal-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-teal-600 transition duration-300">Button</button>
+                        <span class="text-teal-500 text-lg">More Info</span>
+                        <i class="fas fa-info-circle text-teal-500 text-xl"></i>
+                    </div>
+                </div>
+
+                <!-- Button with Loading Icon Append -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center space-x-2">
+                        <button class="bg-indigo-500 text-white font-semibold py-2 px-4 rounded-lg flex items-center space-x-2 hover:bg-indigo-600 transition duration-300">
+                            <span>Loading</span>
+                            <svg class="animate-spin -ml-1 mr-3 h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v2a6 6 0 00-6 6H4zm12-6a8 8 0 010 12v-2a6 6 0 000-12h-2z"></path></svg>
+                        </button>
+                    </div>
+                </div>
+
+            
+
+                <!-- Button with Multiple Icons -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center space-x-2">
+                        <button class="bg-gray-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-gray-700 flex items-center space-x-2 transition duration-300">
+                            <i class="fas fa-home"></i>
+                            <span>Home</span>
+                            <i class="fas fa-chevron-right"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Button with Icon and Badge -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <div class="relative flex items-center space-x-2">
+                        <button class="bg-blue-600 text-white font-semibold py-2 px-4 rounded-lg hover:bg-blue-700 transition duration-300 flex items-center">
+                            <span>Notifications</span>
+                            <i class="fas fa-bell ml-2"></i>
+                            <span class="absolute top-0 right-0 inline-flex items-center justify-center w-3 h-3 p-3 text-xs font-medium text-blue-800 bg-blue-100 rounded-full">3</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Button with Text and Icon Append -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center space-x-2">
+                        <button class="bg-orange-500 text-white font-semibold py-2 px-4 rounded-lg hover:bg-orange-600 flex items-center space-x-2 transition duration-300">
+                            <span>Click Here</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Button Types Search and text area-->
+        <div class="bg-gray-900 rounded-lg shadow-xl p-6 md:p-8">
+            <h2 class="text-3xl font-bold text-white mb-4 md:mb-6" data-aos="fade-up" data-aos-delay="400">Button Type Search and Text Area</h2>
+
+            <!-- Button Examples -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+            
+                <!-- Button with Search -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center">
+                        <input type="text" placeholder="Search..." class="bg-gray-700 text-white px-4 py-2 rounded-l-lg focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        <button class="bg-blue-500 text-white px-4 py-2 rounded-r-lg hover:bg-blue-600 transition duration-300">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </div>
+                    <p class="text-gray-400 mt-2">Search input with a button.</p>
+                </div>
+
+                <!-- Button with Text Area -->
+                <div class="flex flex-col items-center text-center bg-gray-800 p-4 rounded-lg shadow-md" data-aos="fade-up" data-aos-delay="400">
+                    <textarea placeholder="Enter your text..." class="bg-gray-700 text-white px-4 py-2 rounded-lg w-full focus:outline-none focus:ring-2 focus:ring-blue-500"></textarea>
+                    <button class="bg-blue-500 text-white px-4 py-2 rounded-lg mt-4 hover:bg-blue-600 transition duration-300">
+                        Submit
+                    </button>
+                    <p class="text-gray-400 mt-2">Text area with a submit button.</p>
+                </div>
+            </div>
+        </div>
+
+      
+    </div>
+    <!-- End Content -->
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white1 py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 MyApp. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- End Footer -->
+    <script>
+           // SCRIPT SIDEBAR 
+        // Mobile Sidebar Toggle
+        const sidebar = document.getElementById('sidebar');
+        const toggleButton = document.getElementById('toggleButton');
+
+        toggleButton.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        // Submenu Toggle with Icon Rotation
+        document.addEventListener('click', function(event) {
+            if (event.target.dataset.toggle === 'submenu') {
+                const submenuId = event.target.dataset.target;
+                const submenu = document.getElementById(submenuId);
+                submenu.classList.toggle('hidden');
+                
+                // Rotate Icon
+                const icon = event.target.querySelector('.fa-chevron-down');
+                icon.classList.toggle('rotate-180');
+            }
+        });
+
+        // Search Functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const filter = this.value.toLowerCase();
+            const menuItems = document.querySelectorAll('.menu-item');
+            const submenuItems = document.querySelectorAll('.submenu-item');
+
+            // Filter menu items
+            menuItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Filter submenu items
+            submenuItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                const parentMenuItem = item.closest('.menu-item');
+                if (text.includes(filter)) {
+                    item.style.display = '';
+                    parentMenuItem.style.display = ''; // Show parent if submenu item is visible
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Hide parent menu item if no submenu items are visible
+            menuItems.forEach(item => {
+                const submenus = item.querySelectorAll('.submenu-item');
+                if (submenus.length > 0) {
+                    const visibleSubmenuItems = Array.from(submenus).some(submenu => submenu.style.display !== 'none');
+                    if (!visibleSubmenuItems) {
+                        item.style.display = 'none';
+                    }
+                }
+            });
+        });
+        // SCRIPT END SIDEBAR 
+
+    </script>
+    <!-- AOS Initialization -->
+    <script src="../../assets/aos/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+        });
+    </script>
+</body>
+</html>

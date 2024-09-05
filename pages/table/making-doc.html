@@ -1,0 +1,647 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Sidebar</title>
+    <script src="../../assets/tailwind/tailwind.js"></script>
+    <link rel="stylesheet" href="../../assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/style.css">
+    <link rel="stylesheet" href="../../assets/aos/aos.css">
+    <script src="../../assets/file/pdf.js"></script>
+    <script src="../../assets/file/excel.js"></script>
+</head>
+<body class="bg-gray-900 text-white flex flex-col min-h-screen">
+
+    <!-- Mobile Toggle Button -->
+    <div class="md:hidden p-4 flex justify-end">
+        <button id="toggleButton" class="text-gray-400 focus:outline-none">
+            <i class="fas fa-bars fa-2x"></i>
+        </button>
+    </div>
+
+       <!-- Sidebar -->
+       <div id="sidebar" class="fixed inset-y-0 left-0 w-64 transform -translate-x-full md:translate-x-0 transition-transform duration-200 bg-gray-800 p-6">
+        <div class="flex flex-col h-full">
+            <!-- Profile and Brand -->
+            <div class="flex items-center mb-6 profile-brand pb-4 border-b border-gray-700">
+                <!-- Profile Image -->
+                <img src="../../img/profile.jpg" alt="Profile" class="profile-img mr-3">
+                <!-- Brand Name -->
+                <div>
+                    <h2 class="text-xl font-semibold glow-icon text-white">Muhamad Aldiansyah</h2>
+                </div>
+            </div>
+
+            <!-- Search Box -->
+            <div class="mb-6">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search..." class="search-input">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+            </div>
+
+            <!-- Menu Items -->
+            <ul id="menuList" class="flex-1 space-y-3">
+                <!-- Dashboard -->
+                <li class="menu-item">
+                    <div>
+                        <button class="flex items-center justify-between w-full p-2 rounded" data-toggle="submenu" data-target="dashboard">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span class="menu">Dashboard</span>
+                            </div>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <ul id="dashboard" class="submenu mt-2 ml-6 hidden">
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../../index.html" class="w-full p-1 rounded">Dashboard v1</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../../index2.html" class="w-full p-1 rounded">Dashboard v2</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../../index3.html" class="w-full p-1 rounded">Dashboard v3</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="menu-item">
+                    <div>
+                        <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="Uielement">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-layer-group"></i>
+                                <span>UI Element</span>
+                            </div>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <ul id="Uielement" class="mt-2 ml-6 space-y-1 hidden">
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../ui/general.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">General</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../ui/icon.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Icon</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../ui/button.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Button</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../ui/modal.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Modals And Alert</a></li>
+                        </ul>
+                    </div>
+                </li>
+                
+                <li class="menu-item">
+                    <a href="../widget/widget.html" class="flex items-center space-x-2 p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span class="menu flex-1 flex items-center justify-between">
+                            Widget
+                            <span class="ml-2 flex items-center bg-red-500 text-white px-2 py-0.5 rounded-full text-xs font-semibold">
+                                <i class="fas fa-star mr-1"></i> New
+                            </span>
+                        </span>
+                    </a>
+                </li>      
+                
+                <!-- Chart with Submenu -->
+                <li class="menu-item">
+                <div>
+                    <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="Chart">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Chart</span>
+                        </div>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <ul id="Chart" class="mt-2 ml-6 space-y-1 hidden">
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/line.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Line</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/pie.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Pie</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/bar.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Bar</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/area.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Area</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/donut.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Donut</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/stackedbar.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Stacked Bar</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/interactivearea.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Interactive Area</a></li>
+                    </ul>
+                </div>
+                </li>
+
+                <!-- Form with Submenu -->
+                <li class="menu-item">
+                <div>
+                    <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="formSubmenu">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-edit"></i>
+                            <span>Form</span>
+                        </div>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <ul id="formSubmenu" class="mt-2 ml-6 space-y-1 hidden">
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../form/form.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Form 1</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../form/forms.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Form 2</a></li>
+                    </ul>
+                </div>
+                </li>
+                
+                <!-- Table with Submenu -->
+                <li class="menu-item">
+                <div>
+                    <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="tableSubmenu">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-table"></i>
+                            <span>Table</span>
+                        </div>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <ul id="tableSubmenu" class="mt-2 ml-6 space-y-1 hidden">
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="show-search.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Show Search</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="checkbox.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table CheckBox</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="making-doc.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Making Doc</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="modal-recycle.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Modal Recycle</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="select2.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Select2</a></li>
+                    </ul>
+                </div>
+                </li>
+            </ul>
+
+            <!-- Logout Button -->
+            <div class="menu-item mt-6">
+                <a href="#" class="flex items-center space-x-2 p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- End Sidebar -->
+
+
+    <!-- Content Area -->
+<div class="ml-0 md:ml-64 p-6 flex-1">
+    <!-- Header with aligned text -->
+    <div class="flex flex-col md:flex-row justify-between items-start mb-6">
+        <h1 class="text-2xl md:text-3xl">Table Make Doc</h1>
+        <p class="text-sm md:text-lg text-gray-400">Table / Make Doc.</p>
+    </div>
+
+    <!-- Card with Table -->
+    <div class="bg-gray-800 rounded-lg shadow-xl p-6 md:p-8 w-full" data-aos="fade-up" data-aos-delay="400">
+        <h2 class="text-2xl font-bold text-white mb-4">Data Table</h2>
+        
+        <!-- Search, Buttons, and Show Entries -->
+        <div class="flex flex-col md:flex-row items-center mb-4 space-y-4 md:space-y-0 md:space-x-4">
+            <!-- Search and Buttons -->
+            <div class="flex items-center flex-grow md:flex-grow-0 md:w-4/5 space-x-2">
+                <!-- Search -->
+                <input type="text" placeholder="Search..." id="search" class="bg-gray-700 text-gray-300 rounded-lg px-4 py-2 border border-gray-600 w-full max-w-xs">
+                
+                <!-- Buttons for PDF, Excel, and Print -->
+                <div class="flex space-x-2">
+                  <!-- Tombol untuk Download PDF -->
+                    <button id="download-pdf" class="bg-gray-700 text-gray-300 rounded-lg px-4 py-2 hover:bg-gray-600 flex items-center space-x-2 border border-gray-600">
+                        <i class="fas fa-file-pdf"></i>
+                        <span class="hidden md:inline ml-2">PDF</span>
+                    </button>
+
+                    <!-- Tombol untuk Download Excel -->
+                    <button id="download-excel" class="bg-gray-700 text-gray-300 rounded-lg px-4 py-2 hover:bg-gray-600 flex items-center space-x-2 border border-gray-600">
+                        <i class="fas fa-file-excel"></i>
+                        <span class="hidden md:inline ml-2">Excel</span>
+                    </button>
+
+                    <button class="bg-gray-700 text-gray-300 rounded-lg px-4 py-2 hover:bg-gray-600 flex items-center space-x-2 border border-gray-600" id="print">
+                        <i class="fas fa-print"></i>
+                        <span class="hidden md:inline ml-2">Print</span>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Show Entries -->
+            <div class="flex-shrink-0 md:w-1/5">
+                <select class="bg-gray-700 text-gray-300 rounded-lg px-4 py-2 border border-gray-600 w-full max-w-xs" id="pagination">
+                    <option value="10">10</option>
+                    <option value="20">20</option>
+                    <option value="50">50</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- Table -->
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse" id="data-table">
+                <thead>
+                    <tr class="bg-gray-700">
+                        <th class="px-4 py-2 border-b border-gray-600 text-gray-300">#</th>
+                        <th class="px-4 py-2 border-b border-gray-600 text-gray-300">Name</th>
+                        <th class="px-4 py-2 border-b border-gray-600 text-gray-300">Email</th>
+                        <th class="px-4 py-2 border-b border-gray-600 text-gray-300">Address</th>
+                        <th class="px-4 py-2 border-b border-gray-600 text-gray-300">Country</th>
+                        <th class="px-4 py-2 border-b border-gray-600 text-gray-300">Role</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <!-- Example Data Rows -->
+                    <tr class="bg-gray-800 hover:bg-gray-700">
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">1</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">John Doe</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">john@example.com</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Jl. SukaCita</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Admin</td>
+                    </tr>
+                    <!-- Example Data Rows -->
+                    <tr class="bg-gray-800 hover:bg-gray-700">
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">1</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">John Doe</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">john@example.com</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Jl. SukaCita</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Admin</td>
+                    </tr>
+                    <!-- Example Data Rows -->
+                    <tr class="bg-gray-800 hover:bg-gray-700">
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">1</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">John Doe</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">john@example.com</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Jl. SukaCita</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Admin</td>
+                    </tr>
+                    <!-- Example Data Rows -->
+                    <tr class="bg-gray-800 hover:bg-gray-700">
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">1</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">John Doe</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">john@example.com</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Jl. SukaCita</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Admin</td>
+                    </tr>
+                    <!-- Example Data Rows -->
+                    <tr class="bg-gray-800 hover:bg-gray-700">
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">1</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">John Doe</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">john@example.com</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Jl. SukaCita</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Admin</td>
+                    </tr>
+                    <!-- Example Data Rows -->
+                    <tr class="bg-gray-800 hover:bg-gray-700">
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">1</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">John Doe</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">john@example.com</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Jl. SukaCita</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Admin</td>
+                    </tr>
+                    <!-- Example Data Rows -->
+                    <tr class="bg-gray-800 hover:bg-gray-700">
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">1</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">John Doe</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">john@example.com</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Jl. SukaCita</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Admin</td>
+                    </tr>
+                    <!-- Example Data Rows -->
+                    <tr class="bg-gray-800 hover:bg-gray-700">
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">1</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">John Doe</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">john@example.com</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Jl. SukaCita</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Admin</td>
+                    </tr>
+                    <!-- Example Data Rows -->
+                    <tr class="bg-gray-800 hover:bg-gray-700">
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">1</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">John Doe</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">john@example.com</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Jl. SukaCita</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Admin</td>
+                    </tr>
+                    <!-- Example Data Rows -->
+                    <tr class="bg-gray-800 hover:bg-gray-700">
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">1</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">John Doe</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">john@example.com</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Jl. SukaCita</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Admin</td>
+                    </tr>
+                    <!-- Example Data Rows -->
+                    <tr class="bg-gray-800 hover:bg-gray-700">
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">1</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">John Doe</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">john@example.com</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Jl. SukaCita</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                        <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Admin</td>
+                    </tr>
+                    <!-- Add more rows as needed -->
+                </tbody>
+            </table>
+        </div>
+
+         <!-- Pagination -->
+         <div class="flex flex-col md:flex-row justify-between items-center mt-4">
+            <span class="text-gray-400" id="showEntries">Showing 1 to 10 of 50 entries</span>
+            <div class="flex items-center space-x-2 mt-4 md:mt-0">
+                <button id="prevPage" class="bg-gray-700 text-gray-300 rounded-lg px-4 py-2 hover:bg-gray-600 border border-gray-600" disabled>Previous</button>
+                <div id="paginationNumber" class="flex items-center space-x-2">
+                    <!-- Page numbers will be inserted here -->
+                </div>
+                <button id="nextPage" class="bg-gray-700 text-gray-300 rounded-lg px-4 py-2 hover:bg-gray-600 border border-gray-600">Next</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <!-- End Content -->
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white1 py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 MyApp. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- End Footer -->
+    <script>
+           // SCRIPT SIDEBAR 
+        // Mobile Sidebar Toggle
+        const sidebar = document.getElementById('sidebar');
+        const toggleButton = document.getElementById('toggleButton');
+
+        toggleButton.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        // Submenu Toggle with Icon Rotation
+        document.addEventListener('click', function(event) {
+            if (event.target.dataset.toggle === 'submenu') {
+                const submenuId = event.target.dataset.target;
+                const submenu = document.getElementById(submenuId);
+                submenu.classList.toggle('hidden');
+                
+                // Rotate Icon
+                const icon = event.target.querySelector('.fa-chevron-down');
+                icon.classList.toggle('rotate-180');
+            }
+        });
+
+        // Search Functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const filter = this.value.toLowerCase();
+            const menuItems = document.querySelectorAll('.menu-item');
+            const submenuItems = document.querySelectorAll('.submenu-item');
+
+            // Filter menu items
+            menuItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Filter submenu items
+            submenuItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                const parentMenuItem = item.closest('.menu-item');
+                if (text.includes(filter)) {
+                    item.style.display = '';
+                    parentMenuItem.style.display = ''; // Show parent if submenu item is visible
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Hide parent menu item if no submenu items are visible
+            menuItems.forEach(item => {
+                const submenus = item.querySelectorAll('.submenu-item');
+                if (submenus.length > 0) {
+                    const visibleSubmenuItems = Array.from(submenus).some(submenu => submenu.style.display !== 'none');
+                    if (!visibleSubmenuItems) {
+                        item.style.display = 'none';
+                    }
+                }
+            });
+        });
+        // SCRIPT END SIDEBAR 
+
+    </script>
+
+    <script>
+        //script table
+
+           // Script untuk Search Filter
+           document.getElementById('search').addEventListener('input', function() {
+            const searchValue = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#data-table tbody tr');
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                const isVisible = Array.from(cells).some(cell => cell.textContent.toLowerCase().includes(searchValue));
+                row.style.display = isVisible ? '' : 'none';
+            });
+        });
+        
+        // Script untuk pagination, show entries dan next previous
+        document.addEventListener('DOMContentLoaded', () => {
+            const prevPageButton = document.getElementById('prevPage');
+            const nextPageButton = document.getElementById('nextPage');
+            const showEntriesSpan = document.getElementById('showEntries');
+            const paginationNumbers = document.getElementById('paginationNumber');
+            const paginationSelect = document.getElementById('pagination');
+            const dataTable = document.getElementById('data-table');
+            
+            let currentPage = 1;
+            let totalEntries = 100; // Total entries you have
+            let entriesPerPage = parseInt(paginationSelect.value);
+        
+            function updateTable() {
+                // Example: Hide all rows and show only those on the current page
+                const rows = dataTable.querySelectorAll('tbody tr');
+                const start = (currentPage - 1) * entriesPerPage;
+                const end = start + entriesPerPage;
+        
+                rows.forEach((row, index) => {
+                    row.style.display = index >= start && index < end ? '' : 'none';
+                });
+        
+                updatePagination();
+            }
+        
+            function updatePagination() {
+                const rows = dataTable.querySelectorAll('tbody tr');
+                const totalRows = rows.length;
+                const totalPages = Math.ceil(totalRows / entriesPerPage);
+        
+                // Update entries display
+                const startEntry = (currentPage - 1) * entriesPerPage + 1;
+                const endEntry = Math.min(currentPage * entriesPerPage, totalRows);
+                showEntriesSpan.textContent = `Showing ${startEntry} to ${endEntry} of ${totalRows} entries`;
+        
+                // Update page numbers
+                paginationNumbers.innerHTML = ''; // Clear previous page numbers
+        
+                if (totalPages <= 1) return; // No need for pagination if there's only one page
+        
+                // Determine the range of pages to display
+                const maxPagesToShow = 4;
+                let startPage = Math.max(1, currentPage - 1);
+                let endPage = Math.min(totalPages, currentPage + 1);
+        
+                if (totalPages > maxPagesToShow) {
+                    if (currentPage <= 2) {
+                        endPage = Math.min(maxPagesToShow, totalPages);
+                    } else if (currentPage >= totalPages - 1) {
+                        startPage = Math.max(totalPages - maxPagesToShow + 1, 1);
+                    } else {
+                        startPage = currentPage - 1;
+                        endPage = currentPage + 1;
+                    }
+                }
+        
+                // Show first page if needed
+                if (startPage > 1) {
+                    appendPageButton(1);
+                    if (startPage > 2) appendEllipsis();
+                }
+        
+                // Show page numbers within the range
+                for (let i = startPage; i <= endPage; i++) {
+                    appendPageButton(i);
+                }
+        
+                // Show last page if needed
+                if (endPage < totalPages) {
+                    if (endPage < totalPages - 1) appendEllipsis();
+                    appendPageButton(totalPages);
+                }
+        
+                // Disable/enable Previous and Next buttons
+                prevPageButton.disabled = currentPage === 1;
+                nextPageButton.disabled = currentPage === totalPages;
+            }
+        
+            function appendPageButton(pageNumber) {
+                const pageButton = document.createElement('button');
+                pageButton.textContent = pageNumber;
+                pageButton.className = `px-3 py-1 border rounded ${pageNumber === currentPage ? 'bg-gray-900 text-white' : 'bg-gray-600'}`;
+        
+                pageButton.addEventListener('click', () => {
+                    goToPage(pageNumber);
+                });
+        
+                paginationNumbers.appendChild(pageButton);
+            }
+        
+            function appendEllipsis() {
+                const ellipsis = document.createElement('span');
+                ellipsis.textContent = '...';
+                ellipsis.className = 'px-3';
+                paginationNumbers.appendChild(ellipsis);
+            }
+        
+            function goToPage(pageNumber) {
+                currentPage = pageNumber;
+                updateTable();
+            }
+        
+            // Event listeners for pagination controls
+            prevPageButton.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    goToPage(currentPage - 1);
+                }
+            });
+        
+            nextPageButton.addEventListener('click', () => {
+                const totalRows = dataTable.querySelectorAll('tbody tr').length;
+                if (currentPage * entriesPerPage < totalRows) {
+                    goToPage(currentPage + 1);
+                }
+            });
+        
+            // Event listener for entries per page select
+            paginationSelect.addEventListener('change', () => {
+                entriesPerPage = parseInt(paginationSelect.value);
+                currentPage = 1; // Reset to the first page when changing entries per page
+                updateTable();
+            });
+        
+            // Initialize table
+            updateTable();
+        });
+
+           // Script untuk Download PDF
+           document.getElementById('download-pdf').addEventListener('click', () => {
+            const element = document.getElementById('data-table');
+            html2pdf().from(element).save('table.pdf');
+        });
+
+        // Script untuk Download Excel
+        document.getElementById('download-excel').addEventListener('click', () => {
+            const table = document.getElementById('data-table');
+            const wb = XLSX.utils.table_to_book(table, { sheet: "Sheet1" });
+            XLSX.writeFile(wb, 'table.xlsx');
+        });
+
+        document.getElementById('print').addEventListener('click', () => {
+            const printWindow = window.open('', '', 'height=800,width=800');
+            
+            // Header HTML
+            printWindow.document.write('<html><head><title>SMK WAHIDIN KOTA CIREBON</title>');
+            
+            // Gaya CSS untuk cetak
+            printWindow.document.write('<style>');
+            printWindow.document.write('@media print {');
+            printWindow.document.write('  body { font-family: Arial, sans-serif; margin: 20px; }');
+            printWindow.document.write('  .kop-surat { display: flex; align-items: flex-start; margin-bottom: 20px; padding-bottom: 10px; border-bottom: 2px solid #000; width: 100%; }');
+            printWindow.document.write('  .kop-logo { width: 120px; height: auto; margin-right: 20px; }');
+            printWindow.document.write('  .kop-info { flex: 1; display: flex; flex-direction: column; justify-content: center; }');
+            printWindow.document.write('  .kop-title { font-size: 25px; font-weight: bold; margin: 0; text-align: center; }');
+            printWindow.document.write('  .kop-title1 { font-size: 20px; margin: 0; text-align: center; }');
+            printWindow.document.write('  .kop-address { font-size: 15px; margin: 0; font-weight: bold; text-align: center; }');
+            printWindow.document.write('  .print-container { padding: 10px; margin: 0 auto; width: 100%; }');
+            
+            // Mengatur lebar kolom tertentu
+            printWindow.document.write('  table, th, td { border: 1px solid #000; border-collapse: collapse; margin: 0 auto; }');
+            printWindow.document.write('  th, td { padding: 12px; text-align: left; }');
+            printWindow.document.write('  thead { background-color: #f0f0f0; }');
+            printWindow.document.write('  tbody tr:nth-child(odd) { background-color: #f9f9f9; }');
+            
+            // Atur lebar kolom dengan judul `#` dan `1`
+            printWindow.document.write('  th:first-child, td:first-child { width: 50px; text-align: center; }');
+            printWindow.document.write('  th:nth-child(2), td:nth-child(2) { width: 100px; text-align: center; }');
+            
+            printWindow.document.write('}');
+            printWindow.document.write('</style>');
+            
+            // Tutup Head dan buka Body
+            printWindow.document.write('</head><body>');
+            
+            // Kop Surat dengan Logo dan Informasi
+            printWindow.document.write('<div class="kop-surat">');
+            printWindow.document.write('<img src="../../img/logo.png" class="kop-logo">');
+            printWindow.document.write('<div class="kop-info">');
+            printWindow.document.write('<h1 class="kop-title1">PEMERINTAH DAERAH PROVINSI JAWA BARAT</h1>');
+            printWindow.document.write('<h1 class="kop-title1">DINAS PENDIDIKAN</h1>');
+            printWindow.document.write('<h1 class="kop-title1">CABANG DINAS PENDIDIKAN WILAYAH CIREBON</h1>');
+            printWindow.document.write('<h1 class="kop-title">SEKOLAH MENENGAH KEJURUAN WAHIDIN KOTA CIREBON</h1>');
+            printWindow.document.write('<p class="kop-address">Jl. Wahidin No.123, Cirebon, Jawa Barat</p>');
+            printWindow.document.write('</div>');
+            printWindow.document.write('</div>');
+            
+            // Kontainer untuk tabel data
+            printWindow.document.write('<div class="print-container">');
+            printWindow.document.write(document.getElementById('data-table').outerHTML);
+            printWindow.document.write('</div>');
+            
+            // Tutup Body dan HTML
+            printWindow.document.write('</body></html>');
+            
+            printWindow.document.close();
+            printWindow.print();
+        });
+        
+    </script>
+
+
+    <!-- AOS Initialization -->
+    <script src="../../assets/aos/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+        });
+    </script>
+</body>
+</html>

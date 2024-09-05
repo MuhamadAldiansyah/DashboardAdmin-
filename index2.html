@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Sidebar</title>
+    <script src="assets/tailwind/tailwind.js"></script>
+    <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/aos/aos.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .transition-shadow {
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        
+        .transition-transform {
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        
+    </style>
+</head>
+<body class="bg-gray-900 text-white flex flex-col min-h-screen">
+
+    <!-- Mobile Toggle Button -->
+    <div class="md:hidden p-4 flex justify-end">
+        <button id="toggleButton" class="text-gray-400 focus:outline-none">
+            <i class="fas fa-bars fa-2x"></i>
+        </button>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="fixed inset-y-0 left-0 w-64 transform -translate-x-full md:translate-x-0 transition-transform duration-200 bg-gray-800 p-6">
+        <div class="flex flex-col h-full">
+            <!-- Profile and Brand -->
+            <div class="flex items-center mb-6 profile-brand pb-4 border-b border-gray-700">
+                <!-- Profile Image -->
+                <img src="img/profile.jpg" alt="Profile" class="profile-img mr-3">
+                <!-- Brand Name -->
+                <div>
+                    <h2 class="text-xl font-semibold glow-icon text-white">Muhamad Aldiansyah</h2>
+                </div>
+            </div>
+
+            <!-- Search Box -->
+            <div class="mb-6">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search..." class="search-input">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+            </div>
+
+            <!-- Menu Items -->
+            <ul id="menuList" class="flex-1 space-y-3">
+                <!-- Dashboard -->
+                <li class="menu-item">
+                    <div>
+                        <button class="flex items-center justify-between w-full p-2 rounded" data-toggle="submenu" data-target="dashboard">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span class="menu">Dashboard</span>
+                            </div>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <ul id="dashboard" class="submenu mt-2 ml-6 hidden">
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="index.html" class="w-full p-1 rounded">Dashboard v1</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="index2.html" class="w-full p-1 rounded">Dashboard v2</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="index3.html" class="w-full p-1 rounded">Dashboard v3</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="menu-item">
+                    <div>
+                        <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="Uielement">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-layer-group"></i>
+                                <span>UI Element</span>
+                            </div>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                            <ul id="Uielement" class="mt-2 ml-6 space-y-1 hidden">
+                                <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/ui/general.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">General</a></li>
+                                <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/ui/icon.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Icon</a></li>
+                                <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/ui/button.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Button</a></li>
+                                <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/ui/modal.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Modals And Alert</a></li>
+                            </ul>
+                    </div>
+                </li>
+                
+                <li class="menu-item">
+                    <a href="pages/widget/widget.html" class="flex items-center space-x-2 p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span class="menu flex-1 flex items-center justify-between">
+                            Widget
+                            <span class="ml-2 flex items-center bg-red-500 text-white px-2 py-0.5 rounded-full text-xs font-semibold">
+                                <i class="fas fa-star mr-1"></i> New
+                            </span>
+                        </span>
+                    </a>
+                </li>      
+                
+                <!-- Chart with Submenu -->
+                <li class="menu-item">
+                <div>
+                    <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="Chart">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Chart</span>
+                        </div>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <ul id="Chart" class="mt-2 ml-6 space-y-1 hidden">
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/chart/line.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Line</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/chart/pie.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Pie</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/chart/bar.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Bar</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/chart/area.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Area</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/chart/donut.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Donut</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/chart/stackedbar.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Stacked Bar</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/chart/interactivearea.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Interactive Area</a></li>
+                    </ul>
+                </div>
+                </li>
+
+                <!-- Form with Submenu -->
+                <li class="menu-item">
+                <div>
+                    <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="formSubmenu">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-edit"></i>
+                            <span>Form</span>
+                        </div>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <ul id="formSubmenu" class="mt-2 ml-6 space-y-1 hidden">
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/form/form.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Form 1</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/form/forms.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Form 2</a></li>
+                    </ul>
+                </div>
+                </li>
+                
+                <!-- Table with Submenu -->
+                <li class="menu-item">
+                <div>
+                    <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="tableSubmenu">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-table"></i>
+                            <span>Table</span>
+                        </div>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <ul id="tableSubmenu" class="mt-2 ml-6 space-y-1 hidden">
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/table/show-search.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Show Search</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/table/checkbox.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table CheckBox</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/table/making-doc.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Making Doc</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/table/modal-recycle.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Modal Recycle</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/table/select2.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Select2</a></li>
+                    </ul>
+                </div>
+                </li>
+            </ul>
+
+            <!-- Logout Button -->
+            <div class="menu-item mt-6">
+                <a href="#" class="flex items-center space-x-2 p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- End Sidebar -->
+
+    <!-- Content Area -->
+    <div class="ml-0 md:ml-64 p-6 flex-1">
+        <!-- Header with aligned text -->
+        <div class="flex justify-between items-center">
+            <h1 class="text-2xl md:text-3xl">Dashboard</h1>
+            <p class="text-sm md:text-lg text-gray-400">Dashboard v2 / Home.</p>
+        </div>
+
+           <!-- CARD PRODUCT-->
+           <div class="bg-gray-800 p-6 rounded-lg shadow-lg cards mt-5 mb-5" data-aos="fade-up" data-aos-delay="200">
+            <h2 class="text-xl font-semibold mb-4 text-white glow-icon">Products</h2>
+
+            <div
+                class="product-card bg-gray-800 p-4 rounded-lg flex justify-between items-center mb-4 hover:bg-gray-700 transition duration-300">
+                <div class="flex items-center">
+                    <img src="img/download.png" alt="iPhone 14 Pro Max" class="w-12 h-12 mr-4">
+                    <div>
+                        <h3 class="text-white font-medium glow-icon">iPhone 14 Pro Max</h3>
+                        <p class="text-gray-400">524 in stock</p>
+                    </div>
+                </div>
+                <div class="text-white font-semibold glow-icon">
+                    $1,099.00
+                </div>
+            </div>
+
+            <div
+                class="product-card bg-gray-800 p-4 rounded-lg flex justify-between items-center mb-4 hover:bg-gray-700 transition duration-300">
+                <div class="flex items-center">
+                    <img src="img/downloads.png" alt="Apple Watch S8" class="w-12 h-12 mr-4">
+                    <div>
+                        <h3 class="text-white font-medium glow-icon">Apple Watch S8</h3>
+                        <p class="text-gray-400">320 in stock</p>
+                    </div>
+                </div>
+                <div class="text-white font-semibold glow-icon">
+                    $799.00
+                </div>
+            </div>
+        </div>
+      
+         <!-- Container for Cards -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 mt-6">
+            <!-- Card 1 -->
+            <div class="bg-white p-6 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                <div class="flex items-center justify-center mb-4">
+                    <i class="fas fa-laptop-code text-4xl text-blue-600"></i>
+                </div>
+                <h2 class="text-xl font-semibold mb-2">Tech Solutions</h2>
+                <p class="text-gray-700 mb-4">Revolutionize your tech experience with our innovative solutions and cutting-edge technology.</p>
+                <a href="#" class="text-blue-600 hover:text-blue-800 font-semibold">Read More</a>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-white p-6 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                <div class="flex items-center justify-center mb-4">
+                    <i class="fas fa-rocket text-4xl text-green-600"></i>
+                </div>
+                <h2 class="text-xl font-semibold mb-2">Growth</h2>
+                <p class="text-gray-700 mb-4">Accelerate your business growth with our tailored strategies and expert advice.</p>
+                <a href="#" class="text-green-600 hover:text-green-800 font-semibold">Discover More</a>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-white p-6 rounded-lg shadow-lg" data-aos="fade-up" data-aos-delay="200">
+                <div class="flex items-center justify-center mb-4">
+                    <i class="fas fa-handshake text-4xl text-purple-600"></i>
+                </div>
+                <h2 class="text-xl font-semibold mb-2">Partnership</h2>
+                <p class="text-gray-700 mb-4">Build strong and lasting partnerships with us to achieve mutual success and growth.</p>
+                <a href="#" class="text-purple-600 hover:text-purple-800 font-semibold">Get Started</a>
+            </div>
+        </div>
+
+        <!-- Content Cards Text -->
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-6">
+            <!-- Text Only Card 1 -->
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:bg-gray-700 transition duration-300" data-aos="fade-up" data-aos-delay="200">
+                <h2 class="text-xl font-semibold mb-4">Card Title 1</h2>
+                <p class="text-gray-300">This is some sample text content for the first card. It contains simple text for information display purposes.</p>
+            </div>
+    
+            <!-- Text Only Card 2 -->
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:bg-gray-700 transition duration-300" data-aos="fade-up" data-aos-delay="200">
+                <h2 class="text-xl font-semibold mb-4">Card Title 2</h2>
+                <p class="text-gray-300">Here is another card with text content. This card can be used to display any textual information you want.</p>
+            </div>
+    
+            <!-- Text Only Card 3 -->
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg hover:bg-gray-700 transition duration-300" data-aos="fade-up" data-aos-delay="200">
+                <h2 class="text-xl font-semibold mb-4">Card Title 3</h2>
+                <p class="text-gray-300">You can customize this card with more text or other content. It's designed for text display.</p>
+            </div>
+        </div>
+
+          <!-- CARD 4 COLUMN -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 mt-6">
+            <!-- Card 1 -->
+            <div class="bg-gradient-to-r from-blue-500 to-teal-500 p-6 rounded-lg shadow-lg flex flex-col items-center cards" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-rocket fa-3x mb-4 text-white"></i>
+                <h2 class="text-2xl font-bold mb-2">Launch</h2>
+                <p class="text-center">Get started with your project and make it take off with our tools and resources.</p>
+                <a href="#" class="mt-4 bg-white text-blue-600 py-2 px-4 rounded hover:bg-gray-200 transition">Get Started</a>
+            </div>
+
+            <!-- Card 2 -->
+            <div class="bg-gradient-to-r from-purple-600 to-pink-500 p-6 rounded-lg shadow-lg flex flex-col items-center cards" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-star fa-3x mb-4 text-white"></i>
+                <h2 class="text-2xl font-bold mb-2">Premium</h2>
+                <p class="text-center">Unlock premium features and enjoy exclusive benefits tailored for you.</p>
+                <a href="#" class="mt-4 bg-white text-purple-700 py-2 px-4 rounded hover:bg-gray-200 transition">Upgrade</a>
+            </div>
+
+            <!-- Card 3 -->
+            <div class="bg-gradient-to-r from-green-400 to-blue-400 p-6 rounded-lg shadow-lg flex flex-col items-center cards" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-leaf fa-3x mb-4 text-white"></i>
+                <h2 class="text-2xl font-bold mb-2">Eco</h2>
+                <p class="text-center">Sustainable solutions that make a positive impact on the environment.</p>
+                <a href="#" class="mt-4 bg-white text-green-800 py-2 px-4 rounded hover:bg-gray-200 transition">Learn More</a>
+            </div>
+
+            <!-- Card 4 -->
+            <div class="bg-gradient-to-r from-yellow-400 to-red-500 p-6 rounded-lg shadow-lg flex flex-col items-center cards" data-aos="fade-up" data-aos-delay="200">
+                <i class="fas fa-bolt fa-3x mb-4 text-white"></i>
+                <h2 class="text-2xl font-bold mb-2">Speed</h2>
+                <p class="text-center">Experience lightning-fast performance and enhance your productivity.</p>
+                <a href="#" class="mt-4 bg-white text-yellow-800 py-2 px-4 rounded hover:bg-gray-200 transition">Discover</a>
+            </div>
+        </div>
+        
+        
+    </div>
+    <!-- End Content -->
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white1 py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 MyApp. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- End Footer -->
+    <script>
+           // SCRIPT SIDEBAR 
+        // Mobile Sidebar Toggle
+        const sidebar = document.getElementById('sidebar');
+        const toggleButton = document.getElementById('toggleButton');
+
+        toggleButton.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        // Submenu Toggle with Icon Rotation
+        document.addEventListener('click', function(event) {
+            if (event.target.dataset.toggle === 'submenu') {
+                const submenuId = event.target.dataset.target;
+                const submenu = document.getElementById(submenuId);
+                submenu.classList.toggle('hidden');
+                
+                // Rotate Icon
+                const icon = event.target.querySelector('.fa-chevron-down');
+                icon.classList.toggle('rotate-180');
+            }
+        });
+
+        // Search Functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const filter = this.value.toLowerCase();
+            const menuItems = document.querySelectorAll('.menu-item');
+            const submenuItems = document.querySelectorAll('.submenu-item');
+
+            // Filter menu items
+            menuItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Filter submenu items
+            submenuItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                const parentMenuItem = item.closest('.menu-item');
+                if (text.includes(filter)) {
+                    item.style.display = '';
+                    parentMenuItem.style.display = ''; // Show parent if submenu item is visible
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Hide parent menu item if no submenu items are visible
+            menuItems.forEach(item => {
+                const submenus = item.querySelectorAll('.submenu-item');
+                if (submenus.length > 0) {
+                    const visibleSubmenuItems = Array.from(submenus).some(submenu => submenu.style.display !== 'none');
+                    if (!visibleSubmenuItems) {
+                        item.style.display = 'none';
+                    }
+                }
+            });
+        });
+        // SCRIPT END SIDEBAR 
+
+    </script>
+    <!-- AOS Initialization -->
+    <script src="assets/aos/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+        });
+    </script>
+</body>
+</html>

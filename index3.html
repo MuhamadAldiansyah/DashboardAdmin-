@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Sidebar</title>
+    <script src="assets/tailwind/tailwind.js"></script>
+    <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/aos/aos.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .completed {
+            text-decoration: line-through;
+            opacity: 0.6;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-900 text-white flex flex-col min-h-screen">
+
+    <!-- Mobile Toggle Button -->
+    <div class="md:hidden p-4 flex justify-end">
+        <button id="toggleButton" class="text-gray-400 focus:outline-none">
+            <i class="fas fa-bars fa-2x"></i>
+        </button>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar"
+        class="fixed inset-y-0 left-0 w-64 transform -translate-x-full md:translate-x-0 transition-transform duration-200 bg-gray-800 p-6">
+        <div class="flex flex-col h-full">
+            <!-- Profile and Brand -->
+            <div class="flex items-center mb-6 profile-brand pb-4 border-b border-gray-700">
+                <!-- Profile Image -->
+                <img src="img/profile.jpg" alt="Profile" class="profile-img mr-3">
+                <!-- Brand Name -->
+                <div>
+                    <h2 class="text-xl font-semibold glow-icon text-white">Muhamad Aldiansyah</h2>
+                </div>
+            </div>
+
+            <!-- Search Box -->
+            <div class="mb-6">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search..." class="search-input">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+            </div>
+
+            <!-- Menu Items -->
+            <ul id="menuList" class="flex-1 space-y-3">
+                <!-- Dashboard -->
+                <li class="menu-item">
+                    <div>
+                        <button class="flex items-center justify-between w-full p-2 rounded" data-toggle="submenu"
+                            data-target="dashboard">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span class="menu">Dashboard</span>
+                            </div>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <ul id="dashboard" class="submenu mt-2 ml-6 hidden">
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="index.html" class="w-full p-1 rounded">Dashboard v1</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="index2.html" class="w-full p-1 rounded">Dashboard v2</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="index3.html" class="w-full p-1 rounded">Dashboard v3</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="menu-item">
+                    <div>
+                        <button
+                            class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none"
+                            data-toggle="submenu" data-target="Uielement">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-layer-group"></i>
+                                <span>UI Element</span>
+                            </div>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <ul id="Uielement" class="mt-2 ml-6 space-y-1 hidden">
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/ui/general.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">General</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/ui/icon.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Icon</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/ui/button.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Button</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/ui/modal.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Modals And Alert</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="menu-item">
+                    <a href="pages/widget/widget.html"
+                        class="flex items-center space-x-2 p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span class="menu flex-1 flex items-center justify-between">
+                            Widget
+                            <span
+                                class="ml-2 flex items-center bg-red-500 text-white px-2 py-0.5 rounded-full text-xs font-semibold">
+                                <i class="fas fa-star mr-1"></i> New
+                            </span>
+                        </span>
+                    </a>
+                </li>
+
+                <!-- Chart with Submenu -->
+                <li class="menu-item">
+                    <div>
+                        <button
+                            class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none"
+                            data-toggle="submenu" data-target="Chart">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-chart-pie"></i>
+                                <span>Chart</span>
+                            </div>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <ul id="Chart" class="mt-2 ml-6 space-y-1 hidden">
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/chart/line.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Line</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/chart/pie.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Pie</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/chart/bar.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Bar</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/chart/area.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Area</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/chart/donut.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Donut</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/chart/stackedbar.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Stacked Bar</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/chart/interactivearea.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Interactive Area</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- Form with Submenu -->
+                <li class="menu-item">
+                    <div>
+                        <button
+                            class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none"
+                            data-toggle="submenu" data-target="formSubmenu">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-edit"></i>
+                                <span>Form</span>
+                            </div>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <ul id="formSubmenu" class="mt-2 ml-6 space-y-1 hidden">
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/form/form.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Form 1</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/form/forms.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Form 2</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <!-- Table with Submenu -->
+                <li class="menu-item">
+                    <div>
+                        <button
+                            class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none"
+                            data-toggle="submenu" data-target="tableSubmenu">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-table"></i>
+                                <span>Table</span>
+                            </div>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <ul id="tableSubmenu" class="mt-2 ml-6 space-y-1 hidden">
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/table/show-search.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Show Search</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/table/checkbox.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table CheckBox</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/table/making-doc.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Making Doc</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/table/modal-recycle.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Modal Recycle</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/table/select2.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Select2</a></li>
+                        </ul>
+                    </div>
+                </li>
+            </ul>
+
+            <!-- Logout Button -->
+            <div class="menu-item mt-6">
+                <a href="#"
+                    class="flex items-center space-x-2 p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- End Sidebar -->
+
+    <!-- Content Area -->
+    <div class="ml-0 md:ml-64 p-6 flex-1">
+        <!-- Header with aligned text -->
+        <div class="flex justify-between items-center">
+            <h1 class="text-2xl md:text-3xl">Dashboard</h1>
+            <p class="text-sm md:text-lg text-gray-400">Dashboard v3 / Home.</p>
+        </div>
+
+        <!-- Container -->
+        <div class="p-6">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Card 1 -->
+                <div class="bg-gray-800 rounded-lg shadow-lg p-6" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-xl font-semibold mb-4">Project: Website Redesign</h3>
+                    <ul class="space-y-4">
+                        <!-- Task Item -->
+                        <li class="flex flex-wrap items-center justify-between bg-gray-700 p-3 rounded-lg">
+                            <div class="flex items-center flex-grow">
+                                <input type="checkbox" id="task-1"
+                                    class="form-checkbox h-5 w-5 text-blue-600 mr-2" onclick="toggleCompletion(this)">
+                                <span class="ml-2" id="text-task-1">Design homepage layout</span>
+                            </div>
+                            <span
+                                class="inline-flex items-center bg-red-600 text-white text-xs px-2 py-1 rounded text-center whitespace-nowrap mt-2 md:mt-0">
+                                <i class="fas fa-clock mr-1"></i> 10 min
+                            </span>
+                        </li>
+                        <!-- Task Item -->
+                        <li class="flex flex-wrap items-center justify-between bg-gray-700 p-3 rounded-lg">
+                            <div class="flex items-center flex-grow">
+                                <input type="checkbox" id="task-2"
+                                    class="form-checkbox h-5 w-5 text-blue-600 mr-2" onclick="toggleCompletion(this)">
+                                <span class="ml-2" id="text-task-2">Create wireframes for mobile view</span>
+                            </div>
+                            <span
+                                class="inline-flex items-center bg-yellow-600 text-white text-xs px-2 py-1 rounded text-center whitespace-nowrap mt-2 md:mt-0">
+                                <i class="fas fa-clock mr-1"></i> 1 Hour
+                            </span>
+                        </li>
+                        <!-- Task Item -->
+                        <li class="flex flex-wrap items-center justify-between bg-gray-700 p-3 rounded-lg">
+                            <div class="flex items-center flex-grow">
+                                <input type="checkbox" id="task-3"
+                                    class="form-checkbox h-5 w-5 text-blue-600 mr-2" onclick="toggleCompletion(this)">
+                                <span class="ml-2" id="text-task-3">Choose color scheme & typography</span>
+                            </div>
+                            <span
+                                class="inline-flex items-center bg-green-600 text-white text-xs px-2 py-1 rounded text-center whitespace-nowrap mt-2 md:mt-0">
+                                <i class="fas fa-clock mr-1"></i> 10 min
+                            </span>
+                        </li>
+                        <!-- Task Item -->
+                        <li class="flex flex-wrap items-center justify-between bg-gray-700 p-3 rounded-lg">
+                            <div class="flex items-center flex-grow">
+                                <input type="checkbox" id="task-4"
+                                    class="form-checkbox h-5 w-5 text-blue-600 mr-2" onclick="toggleCompletion(this)">
+                                <span class="ml-2" id="text-task-4">Develop responsive navigation menu</span>
+                            </div>
+                            <span
+                                class="inline-flex items-center bg-purple-600 text-white text-xs px-2 py-1 rounded text-center whitespace-nowrap mt-2 md:mt-0">
+                                <i class="fas fa-clock mr-1"></i> 1 Week
+                            </span>
+                        </li>
+                    </ul>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-sm text-gray-400">Due: 2024-09-01</span>
+                        <button class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-500">Mark as
+                            Done</button>
+                    </div>
+                </div>
+
+                <!-- Card 2 with Mini Map -->
+                <div class="bg-gray-800 rounded-lg shadow-lg p-6" data-aos="fade-up" data-aos-delay="200">
+                    <h3 class="text-xl font-semibold mb-4">Location Map</h3>
+                    <p class="mb-4">Here is a mini map showing the location:</p>
+                    <!-- Embed Google Maps -->
+                    <div class="relative overflow-hidden rounded-lg" style="padding-top: 56.25%;">
+                        <iframe class="absolute top-0 left-0 w-full h-full rounded-lg"
+                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126332.51130427636!2d108.47688107320442!3d-6.6971339714094985!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e708c39f2603cdd%3A0x370453f6b83b1c0!2sKabupaten%20Cirebon%2C%20Sumber%2C%20West%20Java%2C%20Indonesia!5e0!3m2!1sen!2s!4v1633567329356!5m2!1sen!2s"
+                            allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                    <div class="flex items-center justify-between mt-4">
+                        <span class="text-sm text-gray-400">Location: Kabupaten Cirebon, Sumber, Indonesia</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Content Text -->
+            <div class="bg-gray-800 rounded-lg shadow-lg p-6 mt-6" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="text-xl font-semibold mb-4">Welcome to Our Location</h3>
+                <p class="mb-4">We are delighted to have you here! Our location offers a range of services and
+                    amenities to ensure you have a pleasant visit. Below you will find more information about what we
+                    offer and how to get in touch with us.</p>
+
+                <ul class="space-y-3 mb-4">
+                    <li class="flex items-center">
+                        <div class="w-6 h-6 flex items-center justify-center bg-blue-600 rounded-full text-white mr-3">
+                            <i class="fas fa-info-circle"></i>
+                        </div>
+                        <span class="ml-2">Aldiansyah.</span>
+                    </li>
+                    <li class="flex items-center">
+                        <div
+                            class="w-6 h-6 flex items-center justify-center bg-green-600 rounded-full text-white mr-3">
+                            <i class="fas fa-map-marker-alt"></i>
+                        </div>
+                        <span class="ml-2">Griya Cempaka Arum Kec Talun.</span>
+                    </li>
+                    <li class="flex items-center">
+                        <div
+                            class="w-6 h-6 flex items-center justify-center bg-yellow-600 rounded-full text-white mr-3">
+                            <i class="fas fa-phone"></i>
+                        </div>
+                        <span class="ml-2">Contact : 0878-2242-1207.</span>
+                    </li>
+                </ul>
+
+                <div class="flex items-center justify-between mt-4">
+                    <span class="text-sm text-gray-400">Feel free to reach out if you have any questions.</span>
+                    <button class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-500">Contact Us</button>
+                </div>
+            </div>
+
+            <!-- Content Chart -->
+            <div class="bg-gray-800 rounded-lg shadow-lg p-6 mt-6" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="text-xl font-semibold mb-4">Visitor Statistics</h3>
+                <p class="mb-4">Here is a visual representation of our monthly visitor statistics.</p>
+
+                <!-- Chart Container -->
+                <div class="relative h-64">
+                    <canvas id="visitorChart"></canvas>
+                </div>
+
+                <!-- Chart.js Script -->
+                <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+                <script>
+                    const ctx = document.getElementById('visitorChart').getContext('2d');
+                    const visitorChart = new Chart(ctx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                            datasets: [{
+                                label: 'Monthly Visitors',
+                                data: [150, 200, 180, 220, 240, 270, 300, 320, 310, 290, 260, 230],
+                                backgroundColor: 'rgba(59, 130, 246, 0.6)',
+                                borderColor: 'rgba(59, 130, 246, 1)',
+                                borderWidth: 1
+                            }]
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            scales: {
+                                x: {
+                                    beginAtZero: true,
+                                    grid: {
+                                        color: 'rgba(255, 255, 255, 0.1)'
+                                    }
+                                },
+                                y: {
+                                    beginAtZero: true,
+                                    grid: {
+                                        color: 'rgba(255, 255, 255, 0.1)'
+                                    }
+                                }
+                            },
+                            plugins: {
+                                legend: {
+                                    position: 'top',
+                                    labels: {
+                                        color: 'white'
+                                    }
+                                }
+                            }
+                        }
+                    });
+                </script>
+            </div>
+
+            <!-- Content calendar -->
+            <div class="bg-gray-800 rounded-lg shadow-lg p-6 mt-6" data-aos="fade-up" data-aos-delay="200">
+                <h3 class="text-xl font-semibold mb-4">Monthly Calendar</h3>
+                <div id="calendar" class="relative p-4">
+                    <!-- Calendar Header -->
+                    <div class="flex items-center justify-between mb-4">
+                        <button id="prevMonth" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-500">
+                            Prev
+                        </button>
+                        <h2 id="monthYear" class="text-lg font-semibold">September 2024</h2>
+                        <button id="nextMonth" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-500">
+                            Next
+                        </button>
+                    </div>
+                    <!-- Calendar Grid -->
+                    <div class="grid grid-cols-7 gap-2">
+                        <!-- Days of Week -->
+                        <div class="font-semibold text-gray-400">Sun</div>
+                        <div class="font-semibold text-gray-400">Mon</div>
+                        <div class="font-semibold text-gray-400">Tue</div>
+                        <div class="font-semibold text-gray-400">Wed</div>
+                        <div class="font-semibold text-gray-400">Thu</div>
+                        <div class="font-semibold text-gray-400">Fri</div>
+                        <div class="font-semibold text-gray-400">Sat</div>
+
+                        <!-- Days of the Month -->
+                        <!-- Days will be injected here by JavaScript -->
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+    <!-- End Content -->
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white1 py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 MyApp. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- End Footer -->
+    <script>
+        // SCRIPT SIDEBAR 
+        // Mobile Sidebar Toggle
+        const sidebar = document.getElementById('sidebar');
+        const toggleButton = document.getElementById('toggleButton');
+
+        toggleButton.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        // Submenu Toggle with Icon Rotation
+        document.addEventListener('click', function(event) {
+            if (event.target.dataset.toggle === 'submenu') {
+                const submenuId = event.target.dataset.target;
+                const submenu = document.getElementById(submenuId);
+                submenu.classList.toggle('hidden');
+
+                // Rotate Icon
+                const icon = event.target.querySelector('.fa-chevron-down');
+                icon.classList.toggle('rotate-180');
+            }
+        });
+
+        // Search Functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const filter = this.value.toLowerCase();
+            const menuItems = document.querySelectorAll('.menu-item');
+            const submenuItems = document.querySelectorAll('.submenu-item');
+
+            // Filter menu items
+            menuItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Filter submenu items
+            submenuItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                const parentMenuItem = item.closest('.menu-item');
+                if (text.includes(filter)) {
+                    item.style.display = '';
+                    parentMenuItem.style.display = ''; // Show parent if submenu item is visible
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Hide parent menu item if no submenu items are visible
+            menuItems.forEach(item => {
+                const submenus = item.querySelectorAll('.submenu-item');
+                if (submenus.length > 0) {
+                    const visibleSubmenuItems = Array.from(submenus).some(submenu => submenu.style
+                        .display !== 'none');
+                    if (!visibleSubmenuItems) {
+                        item.style.display = 'none';
+                    }
+                }
+            });
+        });
+        // SCRIPT END SIDEBAR 
+
+        // Load the saved checkbox states from local storage
+        document.addEventListener('DOMContentLoaded', () => {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                const isChecked = localStorage.getItem(checkbox.id) === 'true';
+                checkbox.checked = isChecked;
+                toggleCompletion(checkbox); // Apply the completed class if needed
+            });
+        });
+
+        function toggleCompletion(checkbox) {
+            const span = document.getElementById(`text-${checkbox.id}`);
+            if (checkbox.checked) {
+                span.classList.add('completed');
+                localStorage.setItem(checkbox.id, 'true');
+            } else {
+                span.classList.remove('completed');
+                localStorage.setItem(checkbox.id, 'false');
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const calendar = document.getElementById('calendar');
+            const monthYear = document.getElementById('monthYear');
+            const prevMonth = document.getElementById('prevMonth');
+            const nextMonth = document.getElementById('nextMonth');
+
+            let currentDate = new Date();
+
+            function renderCalendar(date) {
+                const year = date.getFullYear();
+                const month = date.getMonth();
+                const firstDay = new Date(year, month, 1).getDay();
+                const lastDate = new Date(year, month + 1, 0).getDate();
+                const today = new Date();
+
+                monthYear.textContent = `${date.toLocaleString('default', { month: 'long' })} ${year}`;
+
+                let daysHTML = '';
+                for (let i = 0; i < firstDay; i++) {
+                    daysHTML += `<div class="h-10"></div>`;
+                }
+                for (let i = 1; i <= lastDate; i++) {
+                    const isToday = (i === today.getDate() && month === today.getMonth() && year === today
+                        .getFullYear());
+                    daysHTML += `
+                        <div class="relative h-10 flex items-center justify-center text-gray-300 ${isToday ? 'bg-green-600 text-white rounded-full' : ''}">
+                            <span class="absolute ${isToday ? 'font-semibold' : ''}">
+                                ${i}
+                            </span>
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-full">
+                                <span class="text-white text-xs">${i}</span>
+                            </div>
+                        </div>`;
+                }
+
+                calendar.querySelector('.grid').innerHTML = `
+                    <div class="font-semibold text-gray-400">Sun</div>
+                    <div class="font-semibold text-gray-400">Mon</div>
+                    <div class="font-semibold text-gray-400">Tue</div>
+                    <div class="font-semibold text-gray-400">Wed</div>
+                    <div class="font-semibold text-gray-400">Thu</div>
+                    <div class="font-semibold text-gray-400">Fri</div>
+                    <div class="font-semibold text-gray-400">Sat</div>
+                    ${daysHTML}
+                `;
+            }
+
+            prevMonth.addEventListener('click', () => {
+                currentDate.setMonth(currentDate.getMonth() - 1);
+                renderCalendar(currentDate);
+            });
+
+            nextMonth.addEventListener('click', () => {
+                currentDate.setMonth(currentDate.getMonth() + 1);
+                renderCalendar(currentDate);
+            });
+
+            renderCalendar(currentDate);
+        });
+    </script>
+    <!-- AOS Initialization -->
+    <script src="assets/aos/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+        });
+    </script>
+</body>
+
+</html>

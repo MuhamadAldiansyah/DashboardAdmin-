@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Sidebar</title>
+    <script src="../../assets/tailwind/tailwind.js"></script>
+    <link rel="stylesheet" href="../../assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/style.css">
+    <link rel="stylesheet" href="../../assets/aos/aos.css">
+    <!-- Select2 CSS -->
+    <link rel="stylesheet" href="../../assets/select2/select2.min.css">
+    <!-- jQuery (required for Select2) -->
+    <script src="../../assets/select2/jquery.min.js"></script>
+    <!-- Select2 JS -->
+    <script src="../../assets/select2/select2.js"></script>
+
+</head>
+<body class="bg-gray-900 text-white flex flex-col min-h-screen">
+
+    <!-- Mobile Toggle Button -->
+    <div class="md:hidden p-4 flex justify-end">
+        <button id="toggleButton" class="text-gray-400 focus:outline-none">
+            <i class="fas fa-bars fa-2x"></i>
+        </button>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="fixed inset-y-0 left-0 w-64 transform -translate-x-full md:translate-x-0 transition-transform duration-200 bg-gray-800 p-6">
+        <div class="flex flex-col h-full">
+            <!-- Profile and Brand -->
+            <div class="flex items-center mb-6 profile-brand pb-4 border-b border-gray-700">
+                <!-- Profile Image -->
+                <img src="../../img/profile.jpg" alt="Profile" class="profile-img mr-3">
+                <!-- Brand Name -->
+                <div>
+                    <h2 class="text-xl font-semibold glow-icon text-white">Muhamad Aldiansyah</h2>
+                </div>
+            </div>
+
+            <!-- Search Box -->
+            <div class="mb-6">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search..." class="search-input">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+            </div>
+
+            <!-- Menu Items -->
+            <ul id="menuList" class="flex-1 space-y-3">
+                <!-- Dashboard -->
+                <li class="menu-item">
+                    <div>
+                        <button class="flex items-center justify-between w-full p-2 rounded" data-toggle="submenu" data-target="dashboard">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span class="menu">Dashboard</span>
+                            </div>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <ul id="dashboard" class="submenu mt-2 ml-6 hidden">
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../../index.html" class="w-full p-1 rounded">Dashboard v1</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../../index2.html" class="w-full p-1 rounded">Dashboard v2</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../../index3.html" class="w-full p-1 rounded">Dashboard v3</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="menu-item">
+                    <div>
+                        <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="Uielement">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-layer-group"></i>
+                                <span>UI Element</span>
+                            </div>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <ul id="Uielement" class="mt-2 ml-6 space-y-1 hidden">
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../ui/general.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">General</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../ui/icon.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Icon</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../ui/button.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Button</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../ui/modal.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Modals</a></li>
+                        </ul>
+                    </div>
+                </li>
+                
+                <li class="menu-item">
+                    <a href="../widget/widget.html" class="flex items-center space-x-2 p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span class="menu flex-1 flex items-center justify-between">
+                            Widget
+                            <span class="ml-2 flex items-center bg-red-500 text-white px-2 py-0.5 rounded-full text-xs font-semibold">
+                                <i class="fas fa-star mr-1"></i> New
+                            </span>
+                        </span>
+                    </a>
+                </li>      
+                
+                <!-- Chart with Submenu -->
+                <li class="menu-item">
+                <div>
+                    <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="Chart">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Chart</span>
+                        </div>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <ul id="Chart" class="mt-2 ml-6 space-y-1 hidden">
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/line.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Line</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/pie.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Pie</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/bar.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Bar</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/area.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Area</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/donut.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Donut</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/stackedbar.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Stacked Bar</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/interactivearea.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Interactive Area</a></li>
+                    </ul>
+                </div>
+                </li>
+
+                <!-- Form with Submenu -->
+                <li class="menu-item">
+                <div>
+                    <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="formSubmenu">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-edit"></i>
+                            <span>Form</span>
+                        </div>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <ul id="formSubmenu" class="mt-2 ml-6 space-y-1 hidden">
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="form.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Form 1</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="forms.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Form 2</a></li>
+                    </ul>
+                </div>
+                </li>
+                
+                <!-- Table with Submenu -->
+                <li class="menu-item">
+                <div>
+                    <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="tableSubmenu">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-table"></i>
+                            <span>Table</span>
+                        </div>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <ul id="tableSubmenu" class="mt-2 ml-6 space-y-1 hidden">
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../table/show-search.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Show Search</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../table/checkbox.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table CheckBox</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../table/making-doc.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Making Doc</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../table/modal-recycle.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Modal Recycle</a></li>
+                    </ul>
+                </div>
+                </li>
+            </ul>
+
+            <!-- Logout Button -->
+            <div class="menu-item mt-6">
+                <a href="#" class="flex items-center space-x-2 p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- End Sidebar -->
+
+     <!-- Content Area -->
+     <div class="ml-0 md:ml-64 p-6 flex-1">
+        <!-- Header with aligned text -->
+        <div class="flex justify-between items-center mb-6">
+            <h1 class="text-2xl md:text-3xl">Form</h1>
+            <p class="text-sm md:text-lg text-gray-400">Form3 / Form.</p>
+        </div>
+
+        <!-- Form Container -->
+        <div class="bg-gray-700 p-6 rounded-lg shadow-lg">
+            <form action="#" method="POST">
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <!-- First Column -->
+                    <div>
+                        <!-- Select Input -->
+                        <div class="mb-4">
+                            <label for="namaUser" class="block text-sm font-medium text-gray-300 mb-2">Option 1</label>
+                            <select id="namaUser" class="w-full p-3 rounded-lg bg-gray-600 text-white border border-gray-500 focus:outline-none focus:border-blue-500">
+                                <option value="1">Muhamad Aldiansyah</option>
+                                <option value="2">Jaja Sutarjan</option>
+                                <option value="3">Joko</option>
+                                <option value="4">JokoJokoJokoJokoJokoJoko</option>
+                                <!-- Add more options as needed -->
+                            </select>
+                        </div>
+                        <!-- Date Input -->
+                        <div class="mb-4">
+                            <label for="date1" class="block text-sm font-medium text-gray-300 mb-2">Date 1</label>
+                            <input type="date" id="date1" name="date1" class="w-full p-3 rounded-lg bg-gray-600 text-white border border-gray-500 focus:outline-none focus:border-blue-500">
+                        </div>
+                    </div>
+
+                    <!-- Second Column -->
+                    <div>
+                        <!-- Select Input -->
+                        <div class="mb-4">
+                            <label for="option2" class="block text-sm font-medium text-gray-300 mb-2">Option 2</label>
+                            <select id="option2" name="option2" class="w-full p-3 rounded-lg bg-gray-600 text-white border border-gray-500 focus:outline-none focus:border-blue-500">
+                                <option value="">Select Option 2</option>
+                                <option value="option2a">Option 2A</option>
+                                <option value="option2b">Option 2B</option>
+                                <option value="option2c">Option 2C</option>
+                            </select>
+                        </div>
+                        <!-- Text Input -->
+                        <div class="mb-4">
+                            <label for="text1" class="block text-sm font-medium text-gray-300 mb-2">Text 1</label>
+                            <input type="text" id="text1" name="text1" class="w-full p-3 rounded-lg bg-gray-600 text-white border border-gray-500 focus:outline-none focus:border-blue-500" placeholder="Enter text here">
+                        </div>
+                    </div>
+
+                    <!-- Third Column -->
+                    <div>
+                        <!-- Select Input -->
+                        <div class="mb-4">
+                            <label for="option3" class="block text-sm font-medium text-gray-300 mb-2">Option 3</label>
+                            <select id="option3" name="option3" class="w-full p-3 rounded-lg bg-gray-600 text-white border border-gray-500 focus:outline-none focus:border-blue-500">
+                                <option value="">Select Option 3</option>
+                                <option value="option3a">Option 3A</option>
+                                <option value="option3b">Option 3B</option>
+                                <option value="option3c">Option 3C</option>
+                            </select>
+                        </div>
+
+                          <!-- Number Input with 'Bulan' text -->
+                    <div class="relative mb-4">
+                        <label for="number1" class="block text-sm font-medium text-gray-300 mb-2">Number 1</label>
+                        <input type="number" id="number1" name="number1" class="w-full p-3 pr-20 rounded-lg bg-gray-600 text-white border border-gray-500 focus:outline-none focus:border-blue-500" placeholder="0">
+                    </div>
+
+                    </div>
+                </div>
+
+                <!-- Submit Button -->
+                <div class="mt-6">
+                    <button type="submit" class="w-full md:w-auto bg-blue-500 hover:bg-blue-600 text-white py-3 px-6 rounded-lg transition ease-in-out duration-200">Submit</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Form Section -->
+        <div class="bg-gray-700 p-6 mt-6 rounded-lg shadow-lg">
+            <!-- Form Headers -->
+            <div class="flex flex-col md:flex-row md:justify-between mb-4">
+                <div>
+                    <label class="text-sm font-medium text-gray-300">Administrasi</label>
+                </div>
+                <div>
+                    <label class="text-sm font-medium text-gray-300">Terbayar:</label>
+                </div>
+            </div>
+
+            <!-- Input Section -->
+            <div class="mb-6">
+                <label class="block text-sm font-medium text-gray-300">Harus Dibayar:</label>
+                <input type="text" placeholder="Bayar berapa?" class="mt-1 block w-full px-4 py-2 bg-gray-800 text-white border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+            </div>
+
+            <!-- Button Section -->
+            <div class="flex flex-col md:flex-row md:justify-between space-y-4 md:space-y-0 md:space-x-4">
+                <!-- Left Buttons (Backup and Beasiswa) -->
+                <div class="flex flex-wrap space-x-3">
+                    <button class="flex items-center justify-center px-4 py-2 bg-yellow-500 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-75 transition ease-in-out duration-200">
+                        <i class="fas fa-undo-alt mr-2"></i>
+                        Backup
+                    </button>
+
+                    <button class="flex items-center justify-center px-4 py-2 bg-gray-800 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-75 transition ease-in-out duration-200">
+                        <i class="fas fa-graduation-cap mr-2"></i>
+                        Beasiswa
+                    </button>
+                </div>
+
+                <!-- Save Button -->
+                <div class="flex justify-end">
+                    <button class="flex items-center justify-center px-4 py-2 bg-blue-500 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition ease-in-out duration-200">
+                        <i class="fas fa-save mr-2"></i>
+                        Simpan
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Form Section: Responsively display two forms side by side -->
+        <div class="flex flex-col md:flex-row space-y-6 md:space-y-0 md:space-x-6 mt-6">
+            <!-- Form Card 1 -->
+            <div class="bg-gray-700 p-6 rounded-lg shadow-lg flex-1">
+                <!-- Form Headers -->
+                <div class="flex flex-col md:flex-row md:justify-between mb-4">
+                    <div>
+                        <label class="text-sm font-medium text-gray-300">Administrasi</label>
+                    </div>
+                    <div>
+                        <label class="text-sm font-medium text-gray-300">Terbayar:</label>
+                    </div>
+                </div>
+
+                <!-- Input Section -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-300">Harus Dibayar:</label>
+                    <input type="text" placeholder="Bayar berapa?" class="mt-1 block w-full px-4 py-2 bg-gray-800 text-white border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
+
+                <!-- Button Section -->
+                <div class="flex flex-col md:flex-row justify-between space-y-4 md:space-y-0 md:space-x-4">
+                    <!-- Left Buttons (Backup and Beasiswa) -->
+                    <div class="flex flex-wrap space-x-3 md:space-x-4">
+                        <button class="flex items-center justify-center px-4 py-2 bg-yellow-500 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-400 focus:ring-opacity-75 transition ease-in-out duration-200">
+                            <i class="fas fa-undo-alt mr-2"></i>
+                            Backup
+                        </button>
+
+                        <button class="flex items-center justify-center px-4 py-2 bg-gray-800 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-500 focus:ring-opacity-75 transition ease-in-out duration-200">
+                            <i class="fas fa-graduation-cap mr-2"></i>
+                            Beasiswa
+                        </button>
+                    </div>
+
+                    <!-- Save Button -->
+                    <div class="flex justify-end">
+                        <button class="flex items-center justify-center px-4 py-2 bg-blue-500 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75 transition ease-in-out duration-200">
+                            <i class="fas fa-save mr-2"></i>
+                            Simpan
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Form Card 2 -->
+            <div class="bg-gray-700 p-6 rounded-lg shadow-lg flex-1">
+                <!-- Form Headers -->
+                <div class="flex flex-col md:flex-row md:justify-between mb-4">
+                    <div>
+                        <label class="text-sm font-medium text-gray-300">Pembayaran Lain</label>
+                    </div>
+                    <div>
+                        <label class="text-sm font-medium text-gray-300">Total Pembayaran:</label>
+                    </div>
+                </div>
+
+                <!-- Input Section -->
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-300">Keterangan:</label>
+                    <input type="text" placeholder="Masukkan keterangan" class="mt-1 block w-full px-4 py-2 bg-gray-800 text-white border border-gray-600 rounded-md shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 sm:text-sm">
+                </div>
+
+                <!-- Button Section -->
+                <div class="flex justify-end">
+                    <!-- Save Button -->
+                    <div>
+                        <button class="flex items-center justify-center px-4 py-2 bg-green-500 text-white text-sm font-semibold rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-75 transition ease-in-out duration-200">
+                            <i class="fas fa-check-circle mr-2"></i>
+                            Bayar
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+      
+
+    </div>
+    <!-- End Content -->
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white1 py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 MyApp. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- End Footer -->
+    <script>
+           // SCRIPT SIDEBAR 
+        // Mobile Sidebar Toggle
+        const sidebar = document.getElementById('sidebar');
+        const toggleButton = document.getElementById('toggleButton');
+
+        toggleButton.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        // Submenu Toggle with Icon Rotation
+        document.addEventListener('click', function(event) {
+            if (event.target.dataset.toggle === 'submenu') {
+                const submenuId = event.target.dataset.target;
+                const submenu = document.getElementById(submenuId);
+                submenu.classList.toggle('hidden');
+                
+                // Rotate Icon
+                const icon = event.target.querySelector('.fa-chevron-down');
+                icon.classList.toggle('rotate-180');
+            }
+        });
+
+        // Search Functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const filter = this.value.toLowerCase();
+            const menuItems = document.querySelectorAll('.menu-item');
+            const submenuItems = document.querySelectorAll('.submenu-item');
+
+            // Filter menu items
+            menuItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Filter submenu items
+            submenuItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                const parentMenuItem = item.closest('.menu-item');
+                if (text.includes(filter)) {
+                    item.style.display = '';
+                    parentMenuItem.style.display = ''; // Show parent if submenu item is visible
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Hide parent menu item if no submenu items are visible
+            menuItems.forEach(item => {
+                const submenus = item.querySelectorAll('.submenu-item');
+                if (submenus.length > 0) {
+                    const visibleSubmenuItems = Array.from(submenus).some(submenu => submenu.style.display !== 'none');
+                    if (!visibleSubmenuItems) {
+                        item.style.display = 'none';
+                    }
+                }
+            });
+        });
+        // SCRIPT END SIDEBAR 
+
+    </script>
+
+     <!-- SCRIPT SELECT2 TABUNGAN -->
+     <script>
+        $(document).ready(function() {
+            // Initialize Select2 with default theme
+            $('#namaUser').select2({
+                placeholder: 'Masukan User Baru',
+                allowClear: true
+            });
+        });
+    
+
+        $(document).ready(function() {
+            // Initialize Select2 with default theme
+            $('#option2').select2({
+                placeholder: 'Masukan option 2',
+                allowClear: true
+            }
+            );
+        });
+
+        $(document).ready(function() {
+            // Initialize Select2 with default theme
+            $('#option3').select2({
+                placeholder: 'Masukan option 3',
+                allowClear: true
+            });
+        });
+    </script>
+    
+    <!-- AOS Initialization -->
+    <script src="../../assets/aos/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+        });
+    </script>
+</body>
+</html>

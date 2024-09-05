@@ -1,0 +1,989 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Sidebar</title>
+    <script src="../../assets/tailwind/tailwind.js"></script>
+    <link rel="stylesheet" href="../../assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/style.css">
+    <link rel="stylesheet" href="../../assets/aos/aos.css">
+    <!-- Select2 CSS -->
+    <link rel="stylesheet" href="../../assets/select2/select2.min.css">
+    <!-- jQuery (required for Select2) -->
+    <script src="../../assets/select2/jquery.min.js"></script>
+    <!-- Select2 JS -->
+    <script src="../../assets/select2/select2.js"></script>
+    <style>
+         /* Custom Styling for the Modal */
+        .modal-bg {
+            background-color: rgba(0, 0, 0, 0.75); /* Tailwind's bg-gray-800 with opacity */
+        }
+        .modal-content {
+            background-color: #1f2937; /* Tailwind's bg-gray-900 */
+            color: #e5e7eb; /* Tailwind's text-gray-200 */
+        }
+           /* Custom Styling for Select2 */
+    
+        .select2-container--default{
+            width: auto;
+        }
+
+        .select2-container--default .select2-selection--single {
+            background-color: #1f2937; /* Dark background */
+            color: #e5e7eb; /* Light text */
+            border: 1px solid #374151; /* Dark border */
+            border-radius: 0.375rem; /* Rounded corners */
+            height: 3.5rem; /* Match Tailwind's h-10 */
+            width: 100%;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            color: #e5e7eb; /* Light text */
+            padding: 0.5rem; /* Padding for text */
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 100%; /* Adjust arrow size */
+            top: 50%; /* Center arrow vertically */
+            transform: translateY(-50%); /* Center arrow */
+        }
+        .select2-container--default .select2-results__option {
+            background-color: #1f2937; /* Dark background */
+            color: #e5e7eb; /* Light text */
+        }
+        .select2-container--default .select2-results__option--highlighted {
+            background-color: #374151; /* Highlighted option */
+            color: #e5e7eb; /* Light text */
+        }
+    </style>
+
+</head>
+<body class="bg-gray-900 text-white flex flex-col min-h-screen">
+
+    <!-- Mobile Toggle Button -->
+    <div class="md:hidden p-4 flex justify-end">
+        <button id="toggleButton" class="text-gray-400 focus:outline-none">
+            <i class="fas fa-bars fa-2x"></i>
+        </button>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="fixed inset-y-0 left-0 w-64 transform -translate-x-full md:translate-x-0 transition-transform duration-200 bg-gray-800 p-6">
+        <div class="flex flex-col h-full">
+            <!-- Profile and Brand -->
+            <div class="flex items-center mb-6 profile-brand pb-4 border-b border-gray-700">
+                <!-- Profile Image -->
+                <img src="../../img/profile.jpg" alt="Profile" class="profile-img mr-3">
+                <!-- Brand Name -->
+                <div>
+                    <h2 class="text-xl font-semibold glow-icon text-white">Muhamad Aldiansyah</h2>
+                </div>
+            </div>
+
+            <!-- Search Box -->
+            <div class="mb-6">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search..." class="search-input">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+            </div>
+
+            <!-- Menu Items -->
+            <ul id="menuList" class="flex-1 space-y-3">
+                <!-- Dashboard -->
+                <li class="menu-item">
+                    <div>
+                        <button class="flex items-center justify-between w-full p-2 rounded" data-toggle="submenu" data-target="dashboard">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span class="menu">Dashboard</span>
+                            </div>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <ul id="dashboard" class="submenu mt-2 ml-6 hidden">
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../../index.html" class="w-full p-1 rounded">Dashboard v1</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../../index2.html" class="w-full p-1 rounded">Dashboard v2</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../../index3.html" class="w-full p-1 rounded">Dashboard v3</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="menu-item">
+                    <div>
+                        <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="Uielement">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-layer-group"></i>
+                                <span>UI Element</span>
+                            </div>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <ul id="Uielement" class="mt-2 ml-6 space-y-1 hidden">
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../ui/general.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">General</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../ui/icon.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Icon</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../ui/button.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Button</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../ui/modal.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Modals And Alert</a></li>
+                        </ul>
+                    </div>
+                </li>
+                
+                <li class="menu-item">
+                    <a href="../widget/widget.html" class="flex items-center space-x-2 p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span class="menu flex-1 flex items-center justify-between">
+                            Widget
+                            <span class="ml-2 flex items-center bg-red-500 text-white px-2 py-0.5 rounded-full text-xs font-semibold">
+                                <i class="fas fa-star mr-1"></i> New
+                            </span>
+                        </span>
+                    </a>
+                </li>      
+                
+                <!-- Chart with Submenu -->
+                <li class="menu-item">
+                <div>
+                    <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="Chart">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Chart</span>
+                        </div>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <ul id="Chart" class="mt-2 ml-6 space-y-1 hidden">
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/line.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Line</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/pie.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Pie</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/bar.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Bar</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/area.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Area</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/donut.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Donut</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/stackedbar.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Stacked Bar</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/interactivearea.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Interactive Area</a></li>
+                    </ul>
+                </div>
+                </li>
+
+                <!-- Form with Submenu -->
+                <li class="menu-item">
+                <div>
+                    <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="formSubmenu">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-edit"></i>
+                            <span>Form</span>
+                        </div>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <ul id="formSubmenu" class="mt-2 ml-6 space-y-1 hidden">
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../form/form.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Form 1</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../form/forms.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Form 2</a></li>
+                    </ul>
+                </div>
+                </li>
+                
+                <!-- Table with Submenu -->
+                <li class="menu-item">
+                <div>
+                    <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="tableSubmenu">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-table"></i>
+                            <span>Table</span>
+                        </div>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <ul id="tableSubmenu" class="mt-2 ml-6 space-y-1 hidden">
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="show-search.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Show Search</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="checkbox.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table CheckBox</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="making-doc.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Making Doc</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="modal-recycle.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Modal Recycle</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="select2.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Select2</a></li>
+                    </ul>
+                </div>
+                </li>
+            </ul>
+
+            <!-- Logout Button -->
+            <div class="menu-item mt-6">
+                <a href="#" class="flex items-center space-x-2 p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- End Sidebar -->
+
+    <!-- Content Area -->
+    <div class="ml-0 md:ml-64 p-6 flex-1">
+        <!-- Header with aligned text -->
+        <div class="flex flex-col md:flex-row justify-between items-start mb-6">
+            <h1 class="text-2xl md:text-3xl">Select2</h1>
+            <p class="text-sm md:text-lg text-gray-400">Select2 / Table</p>
+        </div>
+
+       <!-- Card dengan Table -->
+        <div class="bg-gray-800 rounded-lg shadow-xl p-6 md:p-8 w-full" data-aos="fade-up" data-aos-delay="400">
+            <h2 class="text-2xl font-bold text-white mb-4"></h2>
+
+            <!-- Search, Buttons, and Show Entries -->
+            <div class="flex flex-col md:flex-row items-center justify-between mb-4 space-y-4 md:space-y-0 md:space-x-4">
+                <!-- Search and Buttons -->
+                <div class="flex items-center space-x-2">
+                    <!-- Search -->
+                    <input type="text" placeholder="Search..." id="search" class="bg-gray-900 text-white rounded-lg px-4 py-2 border border-gray-600 w-full max-w-xs">
+
+                    <!-- Buttons for PDF, Excel, and Print -->
+                    <div class="flex space-x-2">
+                        <button class="bg-gray-900 text-white rounded-lg px-4 py-2 hover:bg-gray-600 flex items-center space-x-2 border border-gray-600" onclick="openDepositModal()">
+                            <i class="fas fa-plus-circle"></i>
+                        </button>   
+                    
+                     <!-- Button to Open Modal -->
+                    <button class="bg-gray-900 text-white rounded-lg px-4 py-2 hover:bg-gray-600 flex items-center space-x-2 border border-gray-600" onclick="openModal()">
+                        <i class="fas fa-money-bill-wave"></i>
+                    </button>
+                        
+                    </div>
+                </div>
+
+                <!-- Show Entries -->
+                <div class="w-auto">
+                    <select class="bg-gray-900 text-white rounded-lg px-2 py-2 border border-gray-600 text-sm" id="pagination">
+                        <option value="10">10</option>
+                        <option value="20">20</option>
+                        <option value="50">50</option>
+                    </select>
+                </div>
+            </div>
+
+            <!-- Table -->
+            <div class="overflow-x-auto">
+                <table class="w-full text-left border-collapse" id="data-table">
+                    <thead>
+                        <tr class="bg-gray-700">
+                            <th class="px-4 py-2 border-b border-gray-600 text-gray-300">#</th>
+                            <th class="px-4 py-2 border-b border-gray-600 text-gray-300">Name</th>
+                            <th class="px-4 py-2 border-b border-gray-600 text-gray-300">Email</th>
+                            <th class="px-4 py-2 border-b border-gray-600 text-gray-300">Address</th>
+                            <th class="px-4 py-2 border-b border-gray-600 text-gray-300">Country</th>
+                            <th class="px-4 py-2 border-b border-gray-600 text-gray-300">Role</th>
+                            <th class="px-4 py-2 border-b border-gray-600 text-gray-300">Action</th>
+                        </tr>
+                    </thead>
+                   <tbody>
+                        <!-- Example Data Rows -->
+                        <tr class="bg-gray-800 hover:bg-gray-700">
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">1</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">John Doe</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">john@example.com</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Jl. SukaCita</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300 flex items-center space-x-2">
+                                <button class="bg-green-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="bg-blue-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600" onclick="openEditModal()">
+                                    <i class="fas fa-edit"></i>
+                                </button>                                
+                                <button class="bg-red-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>                        
+                        </tr>
+                        <!-- Example Data Rows -->
+                        <tr class="bg-gray-800 hover:bg-gray-700">
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">1</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">John Doe</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">john@example.com</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Jl. SukaCita</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300 flex items-center space-x-2">
+                                <button class="bg-green-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="bg-blue-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="bg-red-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>                        
+                        </tr>
+                        <!-- Example Data Rows -->
+                        <tr class="bg-gray-800 hover:bg-gray-700">
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">1</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">John Doe</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">john@example.com</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Jl. SukaCita</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300 flex items-center space-x-2">
+                                <button class="bg-green-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="bg-blue-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="bg-red-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>                        
+                        </tr>
+                        <!-- Example Data Rows -->
+                        <tr class="bg-gray-800 hover:bg-gray-700">
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">1</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">John Doe</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">john@example.com</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Jl. SukaCita</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300 flex items-center space-x-2">
+                                <button class="bg-green-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="bg-blue-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="bg-red-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>                        
+                        </tr>
+                        <!-- Example Data Rows -->
+                        <tr class="bg-gray-800 hover:bg-gray-700">
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">1</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">John Doe</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">john@example.com</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Jl. SukaCita</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300 flex items-center space-x-2">
+                                <button class="bg-green-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="bg-blue-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="bg-red-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>                        
+                        </tr>
+                        <!-- Example Data Rows -->
+                        <tr class="bg-gray-800 hover:bg-gray-700">
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">1</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">John Doe</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">john@example.com</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Jl. SukaCita</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300 flex items-center space-x-2">
+                                <button class="bg-green-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="bg-blue-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="bg-red-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>                        
+                        </tr>
+                        <!-- Example Data Rows -->
+                        <tr class="bg-gray-800 hover:bg-gray-700">
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">1</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">John Doe</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">john@example.com</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Jl. SukaCita</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300 flex items-center space-x-2">
+                                <button class="bg-green-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="bg-blue-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="bg-red-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>                        
+                        </tr>
+                        <!-- Example Data Rows -->
+                        <tr class="bg-gray-800 hover:bg-gray-700">
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">1</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">John Doe</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">john@example.com</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Jl. SukaCita</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300 flex items-center space-x-2">
+                                <button class="bg-green-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="bg-blue-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="bg-red-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>                        
+                        </tr>
+                        <!-- Example Data Rows -->
+                        <tr class="bg-gray-800 hover:bg-gray-700">
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">1</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">John Doe</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">john@example.com</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Jl. SukaCita</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300 flex items-center space-x-2">
+                                <button class="bg-green-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="bg-blue-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="bg-red-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>                        
+                        </tr>
+                        <!-- Example Data Rows -->
+                        <tr class="bg-gray-800 hover:bg-gray-700">
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">1</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">John Doe</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">john@example.com</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Jl. SukaCita</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300 flex items-center space-x-2">
+                                <button class="bg-green-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="bg-blue-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="bg-red-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>                        
+                        </tr>
+                        <!-- Example Data Rows -->
+                        <tr class="bg-gray-800 hover:bg-gray-700">
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">1</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">John Doe</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">john@example.com</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Jl. SukaCita</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300">Indonesia</td>
+                            <td class="px-4 py-2 border-b border-gray-600 text-gray-300 flex items-center space-x-2">
+                                <button class="bg-green-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="bg-blue-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                                <button class="bg-red-500 text-gray-300 rounded-lg px-2 py-1 hover:bg-gray-600 border border-gray-600">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>                        
+                        </tr>
+                        <!-- Add more rows as needed -->
+                    </tbody>
+                </table>
+                <div id="noDataMessage" class="text-gray-300 text-center py-4 hidden">
+                    Data Not Found
+                </div>
+            </div>
+
+              <!-- Pagination -->
+                <div class="flex flex-col md:flex-row justify-between items-center mt-4">
+                    <span class="text-gray-400" id="showEntries">Showing 1 to 10 of 50 entries</span>
+                    <div class="flex items-center space-x-2 mt-4 md:mt-0">
+                        <button id="prevPage" class="bg-gray-700 text-gray-300 rounded-lg px-4 py-2 hover:bg-gray-600 border border-gray-600" disabled>Previous</button>
+                        <div id="paginationNumber" class="flex items-center space-x-2">
+                            <!-- Page numbers will be inserted here -->
+                        </div>
+                        <button id="nextPage" class="bg-gray-700 text-gray-300 rounded-lg px-4 py-2 hover:bg-gray-600 border border-gray-600">Next</button>
+                    </div>
+                </div>
+        </div>
+
+       <!-- Modal Edit -->
+        <div id="editModal" class="fixed inset-0 modal-bg flex items-center justify-center z-50 hidden">
+            <div class="modal-content rounded-lg shadow-lg p-6 w-full max-w-md bg-gray-800 text-white">
+                <h2 class="text-xl font-semibold mb-4">Edit Data</h2>
+
+                <!-- Form untuk mengedit data -->
+                <div class="mb-4">
+                    <label for="editName" class="block text-sm font-medium">Name</label>
+                    <input type="text" id="editName" class="w-full mt-1 bg-gray-700 rounded border border-gray-600 focus:ring-blue-500 focus:border-blue-500 py-2 px-4" placeholder="Enter Name">
+                </div>
+
+                <div class="mb-4">
+                    <label for="editEmail" class="block text-sm font-medium">Email</label>
+                    <input type="email" id="editEmail" class="w-full mt-1 bg-gray-700 rounded border border-gray-600 focus:ring-blue-500 focus:border-blue-500 py-2 px-4" placeholder="Enter Email">
+                </div>
+
+                <div class="mb-4">
+                    <label for="editAddress" class="block text-sm font-medium">Address</label>
+                    <input type="text" id="editAddress" class="w-full mt-1 bg-gray-700 rounded border border-gray-600 focus:ring-blue-500 focus:border-blue-500 py-2 px-4" placeholder="Enter Address">
+                </div>
+
+                <div class="mb-4">
+                    <label for="editCountry" class="block text-sm font-medium">Country</label>
+                    <input type="text" id="editCountry" class="w-full mt-1 bg-gray-700 rounded border border-gray-600 focus:ring-blue-500 focus:border-blue-500 py-2 px-4" placeholder="Enter Country">
+                </div>
+
+                <div class="mb-4">
+                    <label for="editRole" class="block text-sm font-medium">Role</label>
+                    <input type="text" id="editRole" class="w-full mt-1 bg-gray-700 rounded border border-gray-600 focus:ring-blue-500 focus:border-blue-500 py-2 px-4" placeholder="Enter Role">
+                </div>
+
+                <div class="flex justify-end space-x-2">
+                    <button onclick="closeEditModal()" class="bg-gray-600 text-white rounded-lg px-4 py-2 hover:bg-gray-500">Cancel</button>
+                    <button class="bg-blue-600 text-white rounded-lg px-4 py-2 hover:bg-blue-500">Save</button>
+                </div>
+            </div>
+        </div>
+
+      <!-- Modal Deposit -->
+      <div id="depositModal" class="fixed inset-0 modal-bg flex items-center justify-center z-50 hidden">
+        <div class="modal-content rounded-lg shadow-lg p-6 w-full max-w-md">
+            <h2 class="text-xl font-semibold mb-4">Setoran Tunai</h2>
+            
+            <div class="mb-4">
+                <label for="depositNasabahSelect" class="block text-gray-300 mb-2">Nasabah:</label>
+                <select id="depositNasabahSelect" class="form-select w-full bg-gray-800 text-white border border-gray-600 rounded-md">
+                    <option value="1">Muhamad Aldiansyah</option>
+                    <option value="2">Jaja Sutarjan</option>
+                    <option value="3">Joko</option>
+                    <option value="4">JokoJokoJokoJokoJokoJoko</option>
+                    <!-- Add more options as needed -->
+                </select>
+            </div>
+
+            <div class="mb-4">
+                <label for="depositNorek" class="block text-sm font-medium text-white">No Rekening</label>
+                <input type="number" id="depositNorek" class="w-full mt-1 bg-gray-700 text-white rounded border border-gray-600 focus:ring-blue-500 focus:border-blue-500 py-2 px-4" value="182982982" disabled>
+            </div>
+            
+            <div class="mb-4">
+                <label for="depositNIS" class="block text-sm font-medium text-white">NIS</label>
+                <input type="number" id="depositNIS" class="w-full mt-1 bg-gray-700 text-white rounded border border-gray-600 focus:ring-blue-500 focus:border-blue-500 py-2 px-4" value="00672718728" disabled>
+            </div>
+
+            <div class="mb-4">
+                <label for="depositKelas" class="block text-sm font-medium text-white">Kelas</label>
+                <input type="text" id="depositKelas" class="w-full mt-1 bg-gray-700 text-white rounded border border-gray-600 focus:ring-blue-500 focus:border-blue-500 py-2 px-4" value="XII RPL 3" disabled>
+            </div>
+
+            <div class="mb-4">
+                <label for="depositDate" class="block text-sm font-medium text-white">Tanggal Penarikan</label>
+                <input type="date" id="depositDate" class="w-full mt-1 bg-gray-700 text-white rounded border border-gray-600 focus:ring-blue-500 focus:border-blue-500 py-2 px-4">
+            </div>
+
+            <div class="mb-4">
+                <label for="depositAmount" class="block text-sm font-medium text-white">Jumlah Setoran</label>
+                <input type="number" id="depositAmount" class="w-full mt-1 bg-gray-700 text-white rounded border border-gray-600 focus:ring-blue-500 focus:border-blue-500 py-2 px-4" placeholder="Masukan Jumlah Penarikan">
+            </div>
+
+            <div class="flex justify-end space-x-2">
+                <button onclick="closeDepositModal()" class="bg-gray-600 text-white rounded-lg px-4 py-2 hover:bg-gray-500">Close</button>
+                <button class="bg-blue-600 text-white rounded-lg px-4 py-2 hover:bg-blue-500">Save</button>
+            </div>
+        </div>
+      </div> 
+
+        <!-- Modal -->
+        <div id="modal" class="fixed inset-0 modal-bg flex items-center justify-center z-50 hidden">
+            <div class="modal-content rounded-lg shadow-lg p-6 w-full max-w-md">
+                <h2 class="text-xl font-semibold mb-4">Penarikan Tunai</h2>
+                <div class="mb-4">
+                    <label for="nasabahSelect" class="block text-gray-300 mb-2">Nasabah:</label>
+                    <select id="nasabahSelect" class="form-select w-full bg-gray-800 text-white border border-gray-600 rounded-md">
+                        <option value="1">Muhamad Aldiansyah</option>
+                        <option value="2">Jaja Sutarjan</option>
+                        <option value="3">Joko</option>
+                        <option value="4">JokoJokoJokoJokoJokoJoko</option>
+                        <!-- Add more options as needed -->
+                    </select>
+                </div>
+
+                <div class="mb-4">
+                    <label for="norek" class="block text-sm font-medium text-white">No Rekening</label>
+                    <input type="number" id="norek" class="w-full mt-1 bg-gray-700 text-white rounded border border-gray-600 focus:ring-blue-500 focus:border-blue-500 py-2 px-4" value="182982982" disabled>
+                </div>
+                
+                <div class="mb-4">
+                    <label for="NIS" class="block text-sm font-medium text-white">NIS</label>
+                    <input type="number" id="NIS" class="w-full mt-1 bg-gray-700 text-white rounded border border-gray-600 focus:ring-blue-500 focus:border-blue-500 py-2 px-4" value="00672718728" disabled>
+                </div>
+
+                <div class="mb-4">
+                    <label for="Kelas" class="block text-sm font-medium text-white">Kelas</label>
+                    <input type="text" id="Kelas" class="w-full mt-1 bg-gray-700 text-white rounded border border-gray-600 focus:ring-blue-500 focus:border-blue-500 py-2 px-4" value="XII RPL 3" disabled>
+                </div>
+
+                <div class="mb-4">
+                    <label for="date" class="block text-sm font-medium text-white">Tanggal Penarikan</label>
+                    <input type="date" id="date" class="w-full mt-1 bg-gray-700 text-white rounded border border-gray-600 focus:ring-blue-500 focus:border-blue-500 py-2 px-4">
+                </div>
+
+                <div class="mb-4">
+                    <label for="number" class="block text-sm font-medium text-white">Jumlah Penarikan</label>
+                    <input type="number" id="number" class="w-full mt-1 bg-gray-700 text-white rounded border border-gray-600 focus:ring-blue-500 focus:border-blue-500 py-2 px-4" placeholder="Masukan Jumlah Penarikan">
+                </div>
+                
+
+                <div class="flex justify-end space-x-2">
+                    <button onclick="closeModal()" class="bg-gray-600 text-white rounded-lg px-4 py-2 hover:bg-gray-500">Close</button>
+                    <button class="bg-blue-600 text-white rounded-lg px-4 py-2 hover:bg-blue-500">Save</button>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <!-- End Content -->
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white1 py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 MyApp. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- End Footer -->
+
+    <!-- SCRIPT SIDEBAR -->
+    <script>
+           // SCRIPT SIDEBAR 
+        // Mobile Sidebar Toggle
+        const sidebar = document.getElementById('sidebar');
+        const toggleButton = document.getElementById('toggleButton');
+
+        toggleButton.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        // Submenu Toggle with Icon Rotation
+        document.addEventListener('click', function(event) {
+            if (event.target.dataset.toggle === 'submenu') {
+                const submenuId = event.target.dataset.target;
+                const submenu = document.getElementById(submenuId);
+                submenu.classList.toggle('hidden');
+                
+                // Rotate Icon
+                const icon = event.target.querySelector('.fa-chevron-down');
+                icon.classList.toggle('rotate-180');
+            }
+        });
+
+        // Search Functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const filter = this.value.toLowerCase();
+            const menuItems = document.querySelectorAll('.menu-item');
+            const submenuItems = document.querySelectorAll('.submenu-item');
+
+            // Filter menu items
+            menuItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Filter submenu items
+            submenuItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                const parentMenuItem = item.closest('.menu-item');
+                if (text.includes(filter)) {
+                    item.style.display = '';
+                    parentMenuItem.style.display = ''; // Show parent if submenu item is visible
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Hide parent menu item if no submenu items are visible
+            menuItems.forEach(item => {
+                const submenus = item.querySelectorAll('.submenu-item');
+                if (submenus.length > 0) {
+                    const visibleSubmenuItems = Array.from(submenus).some(submenu => submenu.style.display !== 'none');
+                    if (!visibleSubmenuItems) {
+                        item.style.display = 'none';
+                    }
+                }
+            });
+        });
+        // SCRIPT END SIDEBAR 
+
+    </script>
+
+    <!-- SCRIPT TABLE -->
+    <script>
+        //script table
+
+           // Script untuk Search Filter
+           document.getElementById('search').addEventListener('input', function() {
+            const searchValue = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#data-table tbody tr');
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                const isVisible = Array.from(cells).some(cell => cell.textContent.toLowerCase().includes(searchValue));
+                row.style.display = isVisible ? '' : 'none';
+            });
+        });
+        
+        // Script untuk pagination, show entries dan next previous
+        document.addEventListener('DOMContentLoaded', () => {
+            const prevPageButton = document.getElementById('prevPage');
+            const nextPageButton = document.getElementById('nextPage');
+            const showEntriesSpan = document.getElementById('showEntries');
+            const paginationNumbers = document.getElementById('paginationNumber');
+            const paginationSelect = document.getElementById('pagination');
+            const dataTable = document.getElementById('data-table');
+            
+            let currentPage = 1;
+            let totalEntries = 100; // Total entries you have
+            let entriesPerPage = parseInt(paginationSelect.value);
+        
+            function updateTable() {
+                // Example: Hide all rows and show only those on the current page
+                const rows = dataTable.querySelectorAll('tbody tr');
+                const start = (currentPage - 1) * entriesPerPage;
+                const end = start + entriesPerPage;
+        
+                rows.forEach((row, index) => {
+                    row.style.display = index >= start && index < end ? '' : 'none';
+                });
+        
+                updatePagination();
+            }
+        
+            function updatePagination() {
+                const rows = dataTable.querySelectorAll('tbody tr');
+                const totalRows = rows.length;
+                const totalPages = Math.ceil(totalRows / entriesPerPage);
+        
+                // Update entries display
+                const startEntry = (currentPage - 1) * entriesPerPage + 1;
+                const endEntry = Math.min(currentPage * entriesPerPage, totalRows);
+                showEntriesSpan.textContent = `Showing ${startEntry} to ${endEntry} of ${totalRows} entries`;
+        
+                // Update page numbers
+                paginationNumbers.innerHTML = ''; // Clear previous page numbers
+        
+                if (totalPages <= 1) return; // No need for pagination if there's only one page
+        
+                // Determine the range of pages to display
+                const maxPagesToShow = 4;
+                let startPage = Math.max(1, currentPage - 1);
+                let endPage = Math.min(totalPages, currentPage + 1);
+        
+                if (totalPages > maxPagesToShow) {
+                    if (currentPage <= 2) {
+                        endPage = Math.min(maxPagesToShow, totalPages);
+                    } else if (currentPage >= totalPages - 1) {
+                        startPage = Math.max(totalPages - maxPagesToShow + 1, 1);
+                    } else {
+                        startPage = currentPage - 1;
+                        endPage = currentPage + 1;
+                    }
+                }
+        
+                // Show first page if needed
+                if (startPage > 1) {
+                    appendPageButton(1);
+                    if (startPage > 2) appendEllipsis();
+                }
+        
+                // Show page numbers within the range
+                for (let i = startPage; i <= endPage; i++) {
+                    appendPageButton(i);
+                }
+        
+                // Show last page if needed
+                if (endPage < totalPages) {
+                    if (endPage < totalPages - 1) appendEllipsis();
+                    appendPageButton(totalPages);
+                }
+        
+                // Disable/enable Previous and Next buttons
+                prevPageButton.disabled = currentPage === 1;
+                nextPageButton.disabled = currentPage === totalPages;
+            }
+        
+            function appendPageButton(pageNumber) {
+                const pageButton = document.createElement('button');
+                pageButton.textContent = pageNumber;
+                pageButton.className = `px-3 py-1 border rounded ${pageNumber === currentPage ? 'bg-gray-900 text-white' : 'bg-gray-600'}`;
+        
+                pageButton.addEventListener('click', () => {
+                    goToPage(pageNumber);
+                });
+        
+                paginationNumbers.appendChild(pageButton);
+            }
+        
+            function appendEllipsis() {
+                const ellipsis = document.createElement('span');
+                ellipsis.textContent = '...';
+                ellipsis.className = 'px-3';
+                paginationNumbers.appendChild(ellipsis);
+            }
+        
+            function goToPage(pageNumber) {
+                currentPage = pageNumber;
+                updateTable();
+            }
+        
+            // Event listeners for pagination controls
+            prevPageButton.addEventListener('click', () => {
+                if (currentPage > 1) {
+                    goToPage(currentPage - 1);
+                }
+            });
+        
+            nextPageButton.addEventListener('click', () => {
+                const totalRows = dataTable.querySelectorAll('tbody tr').length;
+                if (currentPage * entriesPerPage < totalRows) {
+                    goToPage(currentPage + 1);
+                }
+            });
+        
+            // Event listener for entries per page select
+            paginationSelect.addEventListener('change', () => {
+                entriesPerPage = parseInt(paginationSelect.value);
+                currentPage = 1; // Reset to the first page when changing entries per page
+                updateTable();
+            });
+        
+            // Initialize table
+            updateTable();
+        });
+  
+
+
+        function toggleModal(modalID) {
+            document.getElementById(modalID).classList.toggle('hidden');
+        }
+
+        document.getElementById('tableSearch').addEventListener('input', function() {
+            const searchValue = this.value.toLowerCase();
+            const rows = document.querySelectorAll('#tableBody tr');
+        
+            rows.forEach(row => {
+                const cells = row.querySelectorAll('td');
+                const isVisible = Array.from(cells).some(cell => cell.textContent.toLowerCase().includes(searchValue));
+                row.style.display = isVisible ? '' : 'none';
+            });
+        });
+
+        // Fungsi untuk menghapus baris dari tabel
+        function deleteRow(rowIndex) {
+            var tableBody = document.getElementById("tableBody");
+            if (tableBody.children[rowIndex]) {
+                tableBody.removeChild(tableBody.children[rowIndex]);
+                checkData(); // Memeriksa apakah tabel kosong setelah penghapusan
+            }
+        }
+
+        // Fungsi untuk memeriksa apakah tabel kosong
+        function checkData() {
+            var tableBody = document.getElementById("tableBody");
+            var noDataMessage = document.getElementById("noDataMessage");
+
+            // Memeriksa apakah tabel kosong
+            if (tableBody.children.length === 0) {
+                noDataMessage.classList.remove("hidden"); // Menampilkan pesan "Data Not Found"
+            } else {
+                noDataMessage.classList.add("hidden"); // Menyembunyikan pesan "Data Not Found"
+            }
+        }
+
+        // Memeriksa data saat halaman dimuat
+        document.addEventListener('DOMContentLoaded', checkData);
+    </script>
+
+    <!-- SCRIPT SELECT2 -->
+    <script>
+        $(document).ready(function() {
+            // Initialize Select2 with default theme
+            $('#nasabahSelect').select2({
+                placeholder: 'Tambahkan Nasabah Baru',
+                allowClear: true
+            });
+        });
+
+        // Function to open the modal
+        function openModal() {
+            document.getElementById('modal').classList.remove('hidden');
+        }
+
+        // Function to close the modal
+        function closeModal() {
+            document.getElementById('modal').classList.add('hidden');
+        }
+        
+     </script>
+
+     <!-- SCRIPT DATE TODAY -->
+     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var dateInput = document.getElementById('date');
+            var today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+            dateInput.value = today;
+        });
+    </script>
+    
+    <!-- SCRIPT SELECT2 TABUNGAN -->
+    <script>
+        $(document).ready(function() {
+            // Initialize Select2 with default theme
+            $('#depositNasabahSelect').select2({
+                placeholder: 'Tambahkan Nasabah Baru',
+                allowClear: true
+            });
+        });
+    
+        // Function to open the modal
+        function openDepositModal() {
+            document.getElementById('depositModal').classList.remove('hidden');
+        }
+    
+        // Function to close the modal
+        function closeDepositModal() {
+            document.getElementById('depositModal').classList.add('hidden');
+        }
+    </script>
+    
+    <!-- SCRIPT DATE TODAY -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var dateInput = document.getElementById('depositDate');
+            var today = new Date().toISOString().split('T')[0]; // Get today's date in YYYY-MM-DD format
+            dateInput.value = today;
+        });
+    </script>
+
+    <!-- Script untuk membuka dan menutup modal -->
+    <script>
+        function openEditModal() {
+            document.getElementById('editModal').classList.remove('hidden');
+        }
+
+        function closeEditModal() {
+            document.getElementById('editModal').classList.add('hidden');
+        }
+    </script>
+
+    <!-- AOS Initialization -->
+    <script src="../../assets/aos/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+        });
+    </script>
+</body>
+</html>

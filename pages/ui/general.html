@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Sidebar</title>
+    <script src="../../assets/tailwind/tailwind.js"></script>
+    <link rel="stylesheet" href="../../assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/style.css">
+    <link rel="stylesheet" href="../../assets/aos/aos.css">
+</head>
+<body class="bg-gray-900 text-white flex flex-col min-h-screen">
+
+    <!-- Mobile Toggle Button -->
+    <div class="md:hidden p-4 flex justify-end">
+        <button id="toggleButton" class="text-gray-400 focus:outline-none">
+            <i class="fas fa-bars fa-2x"></i>
+        </button>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="fixed inset-y-0 left-0 w-64 transform -translate-x-full md:translate-x-0 transition-transform duration-200 bg-gray-800 p-6">
+        <div class="flex flex-col h-full">
+            <!-- Profile and Brand -->
+            <div class="flex items-center mb-6 profile-brand pb-4 border-b border-gray-700">
+                <!-- Profile Image -->
+                <img src="../../img/profile.jpg" alt="Profile" class="profile-img mr-3">
+                <!-- Brand Name -->
+                <div>
+                    <h2 class="text-xl font-semibold glow-icon text-white">Muhamad Aldiansyah</h2>
+                </div>
+            </div>
+
+            <!-- Search Box -->
+            <div class="mb-6">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search..." class="search-input">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+            </div>
+
+            <!-- Menu Items -->
+            <ul id="menuList" class="flex-1 space-y-3">
+                <!-- Dashboard -->
+                <li class="menu-item">
+                    <div>
+                        <button class="flex items-center justify-between w-full p-2 rounded" data-toggle="submenu" data-target="dashboard">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span class="menu">Dashboard</span>
+                            </div>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <ul id="dashboard" class="submenu mt-2 ml-6 hidden">
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../../index.html" class="w-full p-1 rounded">Dashboard v1</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../../index2.html" class="w-full p-1 rounded">Dashboard v2</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../../index3.html" class="w-full p-1 rounded">Dashboard v3</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="menu-item">
+                    <div>
+                        <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="Uielement">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-layer-group"></i>
+                                <span>UI Element</span>
+                            </div>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <ul id="Uielement" class="mt-2 ml-6 space-y-1 hidden">
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="general.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">General</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="icon.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Icon</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="button.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Button</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="modal.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Modals And Alert</a></li>
+                        </ul>
+                    </div>
+                </li>
+                
+                <li class="menu-item">
+                    <a href="../widget/widget.html" class="flex items-center space-x-2 p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span class="menu flex-1 flex items-center justify-between">
+                            Widget
+                            <span class="ml-2 flex items-center bg-red-500 text-white px-2 py-0.5 rounded-full text-xs font-semibold">
+                                <i class="fas fa-star mr-1"></i> New
+                            </span>
+                        </span>
+                    </a>
+                </li>      
+                
+                <!-- Chart with Submenu -->
+                <li class="menu-item">
+                <div>
+                    <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="Chart">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Chart</span>
+                        </div>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <ul id="Chart" class="mt-2 ml-6 space-y-1 hidden">
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/line.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Line</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/pie.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Pie</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/bar.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Bar</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/area.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Area</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/donut.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Donut</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/stackedbar.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Stacked Bar</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/interactivearea.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Interactive Area</a></li>
+                    </ul>
+                </div>
+                </li>
+
+                <!-- Form with Submenu -->
+                <li class="menu-item">
+                <div>
+                    <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="formSubmenu">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-edit"></i>
+                            <span>Form</span>
+                        </div>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <ul id="formSubmenu" class="mt-2 ml-6 space-y-1 hidden">
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../form/form.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Form 1</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../form/forms.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Form 2</a></li>
+                    </ul>
+                </div>
+                </li>
+                
+                <!-- Table with Submenu -->
+                <li class="menu-item">
+                <div>
+                    <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="tableSubmenu">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-table"></i>
+                            <span>Table</span>
+                        </div>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <ul id="tableSubmenu" class="mt-2 ml-6 space-y-1 hidden">
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../table/show-search.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Show Search</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../table/checkbox.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table CheckBox</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../table/making-doc.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Making Doc</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../table/modal-recycle.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Modal Recycle</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../table/select2.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Select2</a></li>
+                    </ul>
+                </div>
+                </li>
+            </ul>
+
+            <!-- Logout Button -->
+            <div class="menu-item mt-6">
+                <a href="#" class="flex items-center space-x-2 p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- End Sidebar -->
+
+    <!-- Content Area -->
+    <div class="ml-0 md:ml-64 p-6 flex-1">
+        <!-- Header with aligned text -->
+        <div class="flex justify-between items-center">
+            <h1 class="text-2xl md:text-3xl">UI Element</h1>
+            <p class="text-sm md:text-lg text-gray-400">UI Element / General.</p>
+        </div>
+
+        <!-- Collor Pallete -->
+        <div class="bg-gray-800 rounded-lg shadow-lg p-6 mt-6 " data-aos="fade-up" data-aos-delay="400">
+            <h3 class="text-xl font-semibold mb-4">Color Palette</h3>
+            <p class="mb-4 text-gray-400">Explore the full range of colors from Tailwind CSS:</p>
+        
+            <!-- Color Palette Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4" data-aos="fade-up" data-aos-delay="400">
+                <!-- Blue Colors -->
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <h4 class="text-lg font-semibold mb-2 text-blue-600">Blue</h4>
+                    <div class="flex flex-wrap">
+                        <!-- Blue 100 to 900 -->
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #ebf8ff;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Blue 100</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #bee3f8;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Blue 200</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #90cdf4;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Blue 300</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #63b3ed;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Blue 400</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #4299e1;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Blue 500</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #3182ce;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Blue 600</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #2b6cb0;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Blue 700</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #2b6cb0;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Blue 800</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #1a365d;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Blue 900</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        
+                <!-- Green Colors -->
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <h4 class="text-lg font-semibold mb-2 text-green-600">Green</h4>
+                    <div class="flex flex-wrap" >
+                        <!-- Green 100 to 900 -->
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #f0fff4;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Green 100</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #c6f6d5;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Green 200</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #9ae6b4;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Green 300</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #68d391;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Green 400</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #48bb78;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Green 500</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #38a169;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Green 600</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #2f855a;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Green 700</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #276749;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Green 800</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #22543d;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Green 900</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                  <!-- Red Colors -->
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <h4 class="text-lg font-semibold mb-2 text-red-600">Red</h4>
+                    <div class="flex flex-wrap">
+                        <!-- Red 100 to 900 -->
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #fff5f5;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Red 100</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #fed7d7;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Red 200</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #feb2b2;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Red 300</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #fc8181;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Red 400</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #f56565;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Red 500</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #e53e3e;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Red 600</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #c53030;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Red 700</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #9b2c2c;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Red 800</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #742a2a;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Red 900</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                 <!-- Gray Colors -->
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <h4 class="text-lg font-semibold mb-2 text-gray-600">Gray</h4>
+                    <div class="flex flex-wrap">
+                        <!-- Gray 100 to 900 -->
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #f7fafc;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Gray 100</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #edf2f7;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Gray 200</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #e2e8f0;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Gray 300</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #cbd5e0;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Gray 400</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #a0aec0;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Gray 500</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #718096;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Gray 600</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #4a5568;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Gray 700</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #2d3748;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Gray 800</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #1a202c;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Gray 900</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Yellow Colors -->
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <h4 class="text-lg font-semibold mb-2 text-yellow-600">Yellow</h4>
+                    <div class="flex flex-wrap">
+                        <!-- Yellow 100 to 900 -->
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #fffff0;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Yellow 100</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #fefcbf;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Yellow 200</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #faf089;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Yellow 300</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #f6e05e;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Yellow 400</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #ecc94b;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Yellow 500</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #d69e2e;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Yellow 600</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #b7791f;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Yellow 700</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #975a16;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Yellow 800</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #744210;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Yellow 900</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Purple Colors -->
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <h4 class="text-lg font-semibold mb-2 text-purple-600">Purple</h4>
+                    <div class="flex flex-wrap">
+                        <!-- Purple 100 to 900 -->
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #faf5ff;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Purple 100</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #e9d8fd;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Purple 200</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #d6bcfa;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Purple 300</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #b794f4;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Purple 400</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #9f7aea;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Purple 500</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #805ad5;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Purple 600</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #6b46c1;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Purple 700</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #553c9a;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Purple 800</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #44337a;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Purple 900</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Orange Colors -->
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <h4 class="text-lg font-semibold mb-2 text-orange-600">Orange</h4>
+                    <div class="flex flex-wrap">
+                        <!-- Orange 100 to 900 -->
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #fffaf0;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Orange 100</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #feebc8;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Orange 200</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #fbd38d;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Orange 300</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #f6ad55;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Orange 400</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #ed8936;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Orange 500</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #dd6b20;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Orange 600</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #c05621;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Orange 700</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #9c4221;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Orange 800</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #7b341e;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Orange 900</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            
+                 <!-- Cyan Colors -->
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <h4 class="text-lg font-semibold mb-2 text-cyan-600">Cyan</h4>
+                    <div class="flex flex-wrap">
+                        <!-- Cyan 100 to 900 -->
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #ecfeff;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Cyan 100</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #cffafe;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Cyan 200</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #a5f3fc;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Cyan 300</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #67e8f9;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Cyan 400</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #22d3ee;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Cyan 500</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #06b6d4;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Cyan 600</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #0891b2;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Cyan 700</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #0e7490;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Cyan 800</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #155e75;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Cyan 900</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Teal Colors -->
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <h4 class="text-lg font-semibold mb-2 text-teal-600">Teal</h4>
+                    <div class="flex flex-wrap">
+                        <!-- Teal 100 to 900 -->
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #f0fdfa;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Teal 100</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #ccfbf1;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Teal 200</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #99f6e4;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Teal 300</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #5eead4;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Teal 400</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #2dd4bf;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Teal 500</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #14b8a6;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Teal 600</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #0d9488;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Teal 700</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #0f766e;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Teal 800</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #134e4a;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Teal 900</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                 <!-- Amber Colors -->
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <h4 class="text-lg font-semibold mb-2 text-amber-600">Amber</h4>
+                    <div class="flex flex-wrap">
+                        <!-- Amber 100 to 900 -->
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #fffbeb;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Amber 100</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #fef3c7;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Amber 200</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #fde68a;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Amber 300</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #fcd34d;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Amber 400</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #fbbf24;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Amber 500</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #f59e0b;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Amber 600</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #d97706;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Amber 700</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #b45309;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Amber 800</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #92400e;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Amber 900</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Indigo Colors -->
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <h4 class="text-lg font-semibold mb-2 text-indigo-600">Indigo</h4>
+                    <div class="flex flex-wrap">
+                        <!-- Indigo 100 to 900 -->
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #e0e7ff;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Indigo 100</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #c7d2fe;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Indigo 200</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #a5b4fc;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Indigo 300</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #818cf8;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Indigo 400</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #6366f1;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Indigo 500</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #4f46e5;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Indigo 600</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #4338ca;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Indigo 700</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #3730a3;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Indigo 800</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #312e81;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Indigo 900</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Rose Colors -->
+                <div data-aos="fade-up" data-aos-delay="400">
+                    <h4 class="text-lg font-semibold mb-2 text-rose-600">Rose</h4>
+                    <div class="flex flex-wrap">
+                        <!-- Rose 100 to 900 -->
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #fef2f2;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Rose 100</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #fee2e2;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Rose 200</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #fecdd3;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Rose 300</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #fda4af;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Rose 400</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #fb7185;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Rose 500</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #f43f5e;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Rose 600</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #e11d48;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Rose 700</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #be123c;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Rose 800</span>
+                            </div>
+                        </div>
+                        <div class="relative w-12 h-12 m-1 rounded-lg overflow-hidden" style="background-color: #9b1121;">
+                            <div class="absolute inset-0 flex items-center justify-center bg-gray-800 opacity-0 hover:opacity-80 rounded-lg">
+                                <span class="text-white text-xs font-semibold">Rose 900</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Alerts dan Callouts -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 p-6 bg-gray-800 rounded-lg shadow-lg mt-6">
+            <!-- Alerts Section -->
+            <div>
+                <!-- Alert Danger -->
+                <div class="bg-red-600 text-white p-4 rounded-lg mb-6 border-l-4 border-red-800 relative" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-exclamation-triangle text-2xl absolute top-4 left-4"></i>
+                    <button class="absolute top-2 right-2 text-white hover:text-gray-300 focus:outline-none" onclick="this.parentElement.remove();">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <h3 class="text-lg font-semibold ml-12">Danger Alert</h3>
+                    <p class="mt-2 ml-12">This is a danger alert message indicating a critical issue that needs immediate attention.</p>
+                    <button class="mt-4 bg-red-700 text-white px-4 py-2 rounded-lg hover:bg-red-600 focus:outline-none focus:ring-2 focus:ring-red-500">
+                        Dismiss
+                    </button>
+                </div>
+        
+                <!-- Alert Warning -->
+                <div class="bg-yellow-500 text-white p-4 rounded-lg mb-6 border-l-4 border-yellow-700 relative" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-exclamation-circle text-2xl absolute top-4 left-4"></i>
+                    <button class="absolute top-2 right-2 text-white hover:text-gray-300 focus:outline-none" onclick="this.parentElement.remove();">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <h3 class="text-lg font-semibold ml-12">Warning Alert</h3>
+                    <p class="mt-2 ml-12">This is a warning alert message indicating a potential issue that should be addressed soon.</p>
+                    <button class="mt-4 bg-yellow-600 text-white px-4 py-2 rounded-lg hover:bg-yellow-500 focus:outline-none focus:ring-2 focus:ring-yellow-400">
+                        Acknowledge
+                    </button>
+                </div>
+        
+                <!-- Alert Success -->
+                <div class="bg-green-600 text-white p-4 rounded-lg mb-6 border-l-4 border-green-800 relative" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-check-circle text-2xl absolute top-4 left-4"></i>
+                    <button class="absolute top-2 right-2 text-white hover:text-gray-300 focus:outline-none" onclick="this.parentElement.remove();">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <h3 class="text-lg font-semibold ml-12">Success Alert</h3>
+                    <p class="mt-2 ml-12">This is a success alert message indicating that an operation was completed successfully.</p>
+                    <button class="mt-4 bg-green-700 text-white px-4 py-2 rounded-lg hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-500">
+                        Great!
+                    </button>
+                </div>
+        
+                <!-- Alert Info -->
+                <div class="bg-blue-600 text-white p-4 rounded-lg mb-6 border-l-4 border-blue-800 relative" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-info-circle text-2xl absolute top-4 left-4"></i>
+                    <button class="absolute top-2 right-2 text-white hover:text-gray-300 focus:outline-none" onclick="this.parentElement.remove();">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <h3 class="text-lg font-semibold ml-12">Info Alert</h3>
+                    <p class="mt-2 ml-12">This is an informational alert message providing useful information or tips.</p>
+                    <button class="mt-4 bg-blue-700 text-white px-4 py-2 rounded-lg hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-500">
+                        Got it
+                    </button>
+                </div>
+            </div>
+        
+            <!-- Callouts Section -->
+            <div>
+                <!-- Callout Example 1 -->
+                <div class="bg-gray-700 text-white p-6 rounded-lg mb-6 border-l-4 border-gray-800 shadow-lg" data-aos="fade-up" data-aos-delay="400">
+                    <h4 class="text-xl font-semibold mb-2">Callout Title 1</h4>
+                    <p class="text-base">This is a callout message providing additional information or highlighting something important. It's styled to stand out and catch attention.</p>
+                </div>
+        
+                <!-- Callout Example 2 -->
+                <div class="bg-gray-700 text-white p-6 rounded-lg mb-6 border-l-4 border-gray-800 shadow-lg" data-aos="fade-up" data-aos-delay="400">
+                    <h4 class="text-xl font-semibold mb-2">Callout Title 2</h4>
+                    <p class="text-base">This callout features a clean and modern design, making it easy to read and visually appealing.</p>
+                </div>
+        
+                <!-- Callout Example 3 -->
+                <div class="bg-gray-700 text-white p-6 rounded-lg mb-6 border-l-4 border-gray-800 shadow-lg" data-aos="fade-up" data-aos-delay="400">
+                    <h4 class="text-xl font-semibold mb-2">Callout Title 3</h4>
+                    <p class="text-base">Providing context or guidance, this callout is designed to fit seamlessly within your content.</p>
+                </div>
+        
+                <!-- Callout Example 4 -->
+                <div class="bg-gray-700 text-white p-6 rounded-lg border-l-4 border-gray-800 shadow-lg" data-aos="fade-up" data-aos-delay="400">
+                    <h4 class="text-xl font-semibold mb-2">Callout Title 4</h4>
+                    <p class="text-base">The final callout in this section, offering additional insights or recommendations to your audience.</p>
+                </div>
+            </div>
+        </div>       
+        
+        
+    </div>
+    <!-- End Content -->
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white1 py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 MyApp. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- End Footer -->
+    <script>
+           // SCRIPT SIDEBAR 
+        // Mobile Sidebar Toggle
+        const sidebar = document.getElementById('sidebar');
+        const toggleButton = document.getElementById('toggleButton');
+
+        toggleButton.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        // Submenu Toggle with Icon Rotation
+        document.addEventListener('click', function(event) {
+            if (event.target.dataset.toggle === 'submenu') {
+                const submenuId = event.target.dataset.target;
+                const submenu = document.getElementById(submenuId);
+                submenu.classList.toggle('hidden');
+                
+                // Rotate Icon
+                const icon = event.target.querySelector('.fa-chevron-down');
+                icon.classList.toggle('rotate-180');
+            }
+        });
+
+        // Search Functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const filter = this.value.toLowerCase();
+            const menuItems = document.querySelectorAll('.menu-item');
+            const submenuItems = document.querySelectorAll('.submenu-item');
+
+            // Filter menu items
+            menuItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Filter submenu items
+            submenuItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                const parentMenuItem = item.closest('.menu-item');
+                if (text.includes(filter)) {
+                    item.style.display = '';
+                    parentMenuItem.style.display = ''; // Show parent if submenu item is visible
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Hide parent menu item if no submenu items are visible
+            menuItems.forEach(item => {
+                const submenus = item.querySelectorAll('.submenu-item');
+                if (submenus.length > 0) {
+                    const visibleSubmenuItems = Array.from(submenus).some(submenu => submenu.style.display !== 'none');
+                    if (!visibleSubmenuItems) {
+                        item.style.display = 'none';
+                    }
+                }
+            });
+        });
+        // SCRIPT END SIDEBAR 
+
+    </script>
+    <!-- AOS Initialization -->
+    <script src="../../assets/aos/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+        });
+    </script>
+</body>
+</html>

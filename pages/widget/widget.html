@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive Sidebar</title>
+    <script src="../../assets/tailwind/tailwind.js"></script>
+    <link rel="stylesheet" href="../../assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="../../assets/style.css">
+    <link rel="stylesheet" href="../../assets/aos/aos.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .transition-shadow {
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        
+        .transition-transform {
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        .glow-text {
+            text-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+        }
+    
+        .glow-icon {
+            filter: drop-shadow(0 0 8px rgba(0, 183, 255, 0.8));
+        }
+    
+        .glow-input {
+            box-shadow: 0 0 8px rgba(0, 183, 255, 0.8);
+        }
+    
+        .glow-button {
+            box-shadow: 0 0 8px rgba(0, 183, 255, 0.8);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+    
+        .glow-button:hover {
+            box-shadow: 0 0 12px rgba(0, 183, 255, 1);
+        }
+
+        
+    </style>
+</head>
+<body class="bg-gray-900 text-white flex flex-col min-h-screen">
+
+    <!-- Mobile Toggle Button -->
+    <div class="md:hidden p-4 flex justify-end">
+        <button id="toggleButton" class="text-gray-400 focus:outline-none">
+            <i class="fas fa-bars fa-2x"></i>
+        </button>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="fixed inset-y-0 left-0 w-64 transform -translate-x-full md:translate-x-0 transition-transform duration-200 bg-gray-800 p-6">
+        <div class="flex flex-col h-full">
+            <!-- Profile and Brand -->
+            <div class="flex items-center mb-6 profile-brand pb-4 border-b border-gray-700">
+                <!-- Profile Image -->
+                <img src="../../img/profile.jpg" alt="Profile" class="profile-img mr-3">
+                <!-- Brand Name -->
+                <div>
+                    <h2 class="text-xl font-semibold glow-icon text-white">Muhamad Aldiansyah</h2>
+                </div>
+            </div>
+
+            <!-- Search Box -->
+            <div class="mb-6">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search..." class="search-input">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+            </div>
+
+            <!-- Menu Items -->
+            <ul id="menuList" class="flex-1 space-y-3">
+                <!-- Dashboard -->
+                <li class="menu-item">
+                    <div>
+                        <button class="flex items-center justify-between w-full p-2 rounded" data-toggle="submenu" data-target="dashboard">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span class="menu">Dashboard</span>
+                            </div>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <ul id="dashboard" class="submenu mt-2 ml-6 hidden">
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../../index.html" class="w-full p-1 rounded">Dashboard v1</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../../index2.html" class="w-full p-1 rounded">Dashboard v2</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../../index3.html" class="w-full p-1 rounded">Dashboard v3</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="menu-item">
+                    <div>
+                        <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="Uielement">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-layer-group"></i>
+                                <span>UI Element</span>
+                            </div>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <ul id="Uielement" class="mt-2 ml-6 space-y-1 hidden">
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../ui/general.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">General</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../ui/icon.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Icon</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../ui/button.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Button</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../ui/modal.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Modals</a></li>
+                        </ul>
+                    </div>
+                </li>
+                
+                <li class="menu-item">
+                    <a href="../widget/widget.html" class="flex items-center space-x-2 p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span class="menu flex-1 flex items-center justify-between">
+                            Widget
+                            <span class="ml-2 flex items-center bg-red-500 text-white px-2 py-0.5 rounded-full text-xs font-semibold">
+                                <i class="fas fa-star mr-1"></i> New
+                            </span>
+                        </span>
+                    </a>
+                </li>      
+                
+                <!-- Chart with Submenu -->
+                <li class="menu-item">
+                <div>
+                    <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="Chart">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Chart</span>
+                        </div>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <ul id="Chart" class="mt-2 ml-6 space-y-1 hidden">
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/line.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Line</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/pie.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Pie</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/bar.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Bar</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/area.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Area</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/donut.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Donut</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/stackedbar.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Stacked Bar</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../chart/interactivearea.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Interactive Area</a></li>
+                    </ul>
+                </div>
+                </li>
+
+                <!-- Form with Submenu -->
+                <li class="menu-item">
+                <div>
+                    <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="formSubmenu">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-edit"></i>
+                            <span>Form</span>
+                        </div>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <ul id="formSubmenu" class="mt-2 ml-6 space-y-1 hidden">
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../form/form.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Form 1</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="forms.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Form 2</a></li>
+                    </ul>
+                </div>
+                </li>
+                
+                <!-- Table with Submenu -->
+                <li class="menu-item">
+                <div>
+                    <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="tableSubmenu">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-table"></i>
+                            <span>Table</span>
+                        </div>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <ul id="tableSubmenu" class="mt-2 ml-6 space-y-1 hidden">
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../table/show-search.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Show Search</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../table/checkbox.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table CheckBox</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../table/making-doc.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Making Doc</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../table/modal-recycle.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Modal Recycle</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="../table/select2.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Select2</a></li>
+                    </ul>
+                </div>
+                </li>
+            </ul>
+
+            <!-- Logout Button -->
+            <div class="menu-item mt-6">
+                <a href="#" class="flex items-center space-x-2 p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- End Sidebar -->
+
+    <!-- Content Area -->
+    <div class="ml-0 md:ml-64 p-6 flex-1">
+        <!-- Header with aligned text -->
+        <div class="flex justify-between items-center">
+            <h1 class="text-2xl md:text-3xl">Widget</h1>
+            <p class="text-sm md:text-lg text-gray-400">Widget / Admin</p>
+        </div>
+
+         <!-- Balance Section -->
+         <div class="bg-gray-800 p-4 md:p-6 rounded-lg mt-6 shadow-lg transition-shadow hover:shadow-2xl hover:shadow-blue-500/50" data-aos="fade-up" data-aos-delay="400">
+            <div class="flex flex-col sm:flex-row justify-between items-center">
+                <div class="order-2 sm:order-1 text-center sm:text-left">
+                    <h2 class="text-lg md:text-xl font-semibold text-white glow-text" data-aos="fade-up" data-aos-delay="400">Saldo Saat Ini</h2>
+                    <p class="text-3xl md:text-4xl font-bold text-white mt-2 glow-text" data-aos="fade-up" data-aos-delay="400">Rp 10.000.000</p>
+                </div>
+                <div class="order-1 sm:order-2 mb-4 sm:mb-0 sm:ml-4" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-wallet fa-3x md:fa-4x text-white glow-icon"></i>
+                </div>
+            </div>
+        </div>
+    
+        <!-- Filter Section -->
+        <div class="filter-section mt-6" data-aos="fade-up" data-aos-delay="400">
+            <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                <input type="date" id="start-date" class="bg-gray-800 text-white rounded-lg p-2 w-full sm:w-auto glow-input" placeholder="Dari">
+                <input type="date" id="end-date" class="bg-gray-800 text-white rounded-lg p-2 w-full sm:w-auto glow-input" placeholder="Sampai">
+                <button id="filter-button" class="bg-blue-600 text-white rounded-lg px-4 py-2 hover:bg-blue-500 w-full sm:w-auto glow-button" data-aos="fade-up" data-aos-delay="400">
+                    <i class="fas fa-eye"></i> Lihat
+                </button>
+            </div>
+        </div>
+    
+        <!-- Transaction History -->
+        <div class="bg-gray-800 p-4 md:p-6 rounded-lg mt-6 shadow-lg transition-shadow hover:shadow-2xl hover:shadow-green-500/50" data-aos="fade-up" data-aos-delay="400">
+            <h2 class="text-lg md:text-xl font-semibold text-white mb-4 glow-text" data-aos="fade-up" data-aos-delay="400">Riwayat Transaksi</h2>
+            <ul>
+
+                <li class="flex justify-between items-center py-2 border-b border-gray-700" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center">
+                        <i class="fas fa-arrow-circle-down text-green-400 fa-lg mr-3"></i>
+                        <div>
+                            <p class="text-sm text-gray-400">Pemasukan</p>
+                            <p class="text-base md:text-lg text-white glow-text">Rp 1.500.000</p>
+                        </div>
+                    </div>
+                    <div class="text-green-400 text-sm md:text-base glow-text">+ Rp 1.500.000</div>
+                </li>
+
+                <li class="flex justify-between items-center py-2 border-b border-gray-700" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center">
+                        <i class="fas fa-arrow-circle-up text-red-400 fa-lg mr-3"></i>
+                        <div>
+                            <p class="text-sm text-gray-400">Pengeluaran</p>
+                            <p class="text-base md:text-lg text-white glow-text">Rp 500.000</p>
+                        </div>
+                    </div>
+                    <div class="text-red-400 text-sm md:text-base glow-text">- Rp 500.000</div>
+                </li>
+      
+                <li class="flex justify-between items-center py-2 border-b border-gray-700" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center">
+                        <i class="fas fa-arrow-circle-down text-green-400 fa-lg mr-3"></i>
+                        <div>
+                            <p class="text-sm text-gray-400">Pemasukan</p>
+                            <p class="text-base md:text-lg text-white glow-text">Rp 2.000.000</p>
+                        </div>
+                    </div>
+                    <div class="text-green-400 text-sm md:text-base glow-text">+ Rp 2.000.000</div>
+                </li>
+
+                <li class="flex justify-between items-center py-2 border-b border-gray-700" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center">
+                        <i class="fas fa-arrow-circle-up text-red-400 fa-lg mr-3"></i>
+                        <div>
+                            <p class="text-sm text-gray-400">Pengeluaran</p>
+                            <p class="text-base md:text-lg text-white glow-text">Rp 500.000</p>
+                        </div>
+                    </div>
+                    <div class="text-red-400 text-sm md:text-base glow-text">- Rp 500.000</div>
+                </li>
+
+                <li class="flex justify-between items-center py-2 border-b border-gray-700" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center">
+                        <i class="fas fa-arrow-circle-down text-green-400 fa-lg mr-3"></i>
+                        <div>
+                            <p class="text-sm text-gray-400">Pemasukan</p>
+                            <p class="text-base md:text-lg text-white glow-text">Rp 2.000.000</p>
+                        </div>
+                    </div>
+                    <div class="text-green-400 text-sm md:text-base glow-text">+ Rp 2.000.000</div>
+                </li>
+
+                <li class="flex justify-between items-center py-2 border-b border-gray-700" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center">
+                        <i class="fas fa-arrow-circle-down text-green-400 fa-lg mr-3"></i>
+                        <div>
+                            <p class="text-sm text-gray-400">Pemasukan</p>
+                            <p class="text-base md:text-lg text-white glow-text">Rp 2.000.000</p>
+                        </div>
+                    </div>
+                    <div class="text-green-400 text-sm md:text-base glow-text">+ Rp 2.000.000</div>
+                </li>
+
+                <li class="flex justify-between items-center py-2 border-b border-gray-700" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center">
+                        <i class="fas fa-arrow-circle-down text-green-400 fa-lg mr-3"></i>
+                        <div>
+                            <p class="text-sm text-gray-400">Pemasukan</p>
+                            <p class="text-base md:text-lg text-white glow-text">Rp 2.000.000</p>
+                        </div>
+                    </div>
+                    <div class="text-green-400 text-sm md:text-base glow-text">+ Rp 2.000.000</div>
+                </li>
+
+                <li class="flex justify-between items-center py-2 border-b border-gray-700" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center">
+                        <i class="fas fa-arrow-circle-down text-green-400 fa-lg mr-3"></i>
+                        <div>
+                            <p class="text-sm text-gray-400">Pemasukan</p>
+                            <p class="text-base md:text-lg text-white glow-text">Rp 2.000.000</p>
+                        </div>
+                    </div>
+                    <div class="text-green-400 text-sm md:text-base glow-text">+ Rp 2.000.000</div>
+                </li>
+
+                <li class="flex justify-between items-center py-2 border-b border-gray-700" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center">
+                        <i class="fas fa-arrow-circle-down text-green-400 fa-lg mr-3"></i>
+                        <div>
+                            <p class="text-sm text-gray-400">Pemasukan</p>
+                            <p class="text-base md:text-lg text-white glow-text">Rp 2.000.000</p>
+                        </div>
+                    </div>
+                    <div class="text-green-400 text-sm md:text-base glow-text">+ Rp 2.000.000</div>
+                </li>
+
+                <li class="flex justify-between items-center py-2 border-b border-gray-700" data-aos="fade-up" data-aos-delay="400">
+                    <div class="flex items-center">
+                        <i class="fas fa-arrow-circle-down text-green-400 fa-lg mr-3"></i>
+                        <div>
+                            <p class="text-sm text-gray-400">Pemasukan</p>
+                            <p class="text-base md:text-lg text-white glow-text">Rp 2.000.000</p>
+                        </div>
+                    </div>
+                    <div class="text-green-400 text-sm md:text-base glow-text">+ Rp 2.000.000</div>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Novel List Section -->
+        <div class="mt-6 grid grid-cols-3 md:grid-cols-6 gap-6">
+            <!-- Novel 1 -->
+            <div class="bg-gray-900 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out">
+                <img src="../../img/novel (1).jpeg" alt="Judul Novel 1" class="w-full h-auto max-w-[200px] max-h-[300px] object-cover mx-auto">
+                <div class="p-4">
+                    <h2 class="text-white text-center text-lg font-semibold">Judul Novel 1</h2>
+                </div>
+            </div>
+            <!-- Novel 2 -->
+            <div class="bg-gray-900 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out">
+                <img src="../../img/novel (2).jpeg" alt="Judul Novel 2" class="w-full h-auto max-w-[200px] max-h-[300px] object-cover mx-auto">
+                <div class="p-4">
+                    <h2 class="text-white text-center text-lg font-semibold">Judul Novel 2</h2>
+                </div>
+            </div>
+            <!-- Novel 3 -->
+            <div class="bg-gray-900 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out">
+                <img src="../../img/novel (3).jpeg" alt="Judul Novel 3" class="w-full h-auto max-w-[200px] max-h-[300px] object-cover mx-auto">
+                <div class="p-4">
+                    <h2 class="text-white text-center text-lg font-semibold">Judul Novel 3</h2>
+                </div>
+            </div>
+            <!-- Novel 4 -->
+            <div class="bg-gray-900 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out">
+                <img src="../../img/novel (5).jpeg" alt="Judul Novel 4" class="w-full h-auto max-w-[200px] max-h-[300px] object-cover mx-auto">
+                <div class="p-4">
+                    <h2 class="text-white text-center text-lg font-semibold">Judul Novel 4</h2>
+                </div>
+            </div>
+            <!-- Novel 5 -->
+            <div class="bg-gray-900 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out">
+                <img src="../../img/novel (6).jpeg" alt="Judul Novel 5" class="w-full h-auto max-w-[200px] max-h-[300px] object-cover mx-auto">
+                <div class="p-4">
+                    <h2 class="text-white text-center text-lg font-semibold">Judul Novel 5</h2>
+                </div>
+            </div>
+            <!-- Novel 6 -->
+            <div class="bg-gray-900 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300 ease-in-out">
+                <img src="../../img/novel (7).jpeg" alt="Judul Novel 6" class="w-full h-auto max-w-[200px] max-h-[300px] object-cover mx-auto">
+                <div class="p-4">
+                    <h2 class="text-white text-center text-lg font-semibold">Judul Novel 6</h2>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- End Content -->
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white1 py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 MyApp. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- End Footer -->
+    <script>
+           // SCRIPT SIDEBAR 
+        // Mobile Sidebar Toggle
+        const sidebar = document.getElementById('sidebar');
+        const toggleButton = document.getElementById('toggleButton');
+
+        toggleButton.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        // Submenu Toggle with Icon Rotation
+        document.addEventListener('click', function(event) {
+            if (event.target.dataset.toggle === 'submenu') {
+                const submenuId = event.target.dataset.target;
+                const submenu = document.getElementById(submenuId);
+                submenu.classList.toggle('hidden');
+                
+                // Rotate Icon
+                const icon = event.target.querySelector('.fa-chevron-down');
+                icon.classList.toggle('rotate-180');
+            }
+        });
+
+        // Search Functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const filter = this.value.toLowerCase();
+            const menuItems = document.querySelectorAll('.menu-item');
+            const submenuItems = document.querySelectorAll('.submenu-item');
+
+            // Filter menu items
+            menuItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Filter submenu items
+            submenuItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                const parentMenuItem = item.closest('.menu-item');
+                if (text.includes(filter)) {
+                    item.style.display = '';
+                    parentMenuItem.style.display = ''; // Show parent if submenu item is visible
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Hide parent menu item if no submenu items are visible
+            menuItems.forEach(item => {
+                const submenus = item.querySelectorAll('.submenu-item');
+                if (submenus.length > 0) {
+                    const visibleSubmenuItems = Array.from(submenus).some(submenu => submenu.style.display !== 'none');
+                    if (!visibleSubmenuItems) {
+                        item.style.display = 'none';
+                    }
+                }
+            });
+        });
+        // SCRIPT END SIDEBAR 
+
+    </script>
+    <!-- AOS Initialization -->
+    <script src="../../assets/aos/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+        });
+    </script>
+</body>
+</html>

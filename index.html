@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin User</title>
+    <script src="assets/tailwind/tailwind.js"></script>
+    <link rel="stylesheet" href="assets/fontawesome/css/all.min.css">
+    <link rel="stylesheet" href="assets/style.css">
+    <link rel="stylesheet" href="assets/aos/aos.css">
+    <style>
+        body {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .transition-shadow {
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        
+        .transition-transform {
+            transition: transform 0.3s ease-in-out;
+        }
+        
+        
+    </style>
+</head>
+<body class="bg-gray-900 text-white flex flex-col min-h-screen">
+
+    <!-- Mobile Toggle Button -->
+    <div class="md:hidden p-4 flex justify-end">
+        <button id="toggleButton" class="text-gray-400 focus:outline-none">
+            <i class="fas fa-bars fa-2x"></i>
+        </button>
+    </div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="fixed inset-y-0 left-0 w-64 transform -translate-x-full md:translate-x-0 transition-transform duration-200 bg-gray-800 p-6">
+        <div class="flex flex-col h-full">
+            <!-- Profile and Brand -->
+            <div class="flex items-center mb-6 profile-brand pb-4 border-b border-gray-700">
+                <!-- Profile Image -->
+                <img src="img/profile.jpg" alt="Profile" class="profile-img mr-3">
+                <!-- Brand Name -->
+                <div>
+                    <h2 class="text-xl font-semibold text-white">Muhamad Aldiansyah</h2>
+                </div>
+            </div>
+
+            <!-- Search Box -->
+            <div class="mb-6">
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Search..." class="search-input">
+                    <i class="fas fa-search search-icon"></i>
+                </div>
+            </div>
+
+            <!-- Menu Items -->
+            <ul id="menuList" class="flex-1 space-y-3">
+                <!-- Dashboard -->
+                <li class="menu-item">
+                    <div>
+                        <button class="flex items-center justify-between w-full p-2 rounded" data-toggle="submenu" data-target="dashboard">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-tachometer-alt"></i>
+                                <span class="menu">Dashboard</span>
+                            </div>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <ul id="dashboard" class="submenu mt-2 ml-6 hidden">
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="index.html" class="w-full p-1 rounded">Dashboard v1</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="index2.html" class="w-full p-1 rounded">Dashboard v2</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="index3.html" class="w-full p-1 rounded">Dashboard v3</a></li>
+                        </ul>
+                    </div>
+                </li>
+
+                <li class="menu-item">
+                    <div>
+                        <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="Uielement">
+                            <div class="flex items-center space-x-2">
+                                <i class="fas fa-layer-group"></i>
+                                <span>UI Element</span>
+                            </div>
+                            <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                        </button>
+                        <ul id="Uielement" class="mt-2 ml-6 space-y-1 hidden">
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/ui/general.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">General</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/ui/icon.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Icon</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/ui/button.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Button</a></li>
+                            <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/ui/modal.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Modals And Alert</a></li>
+                        </ul>
+                    </div>
+                </li>
+                
+
+                <li class="menu-item">
+                    <a href="pages/widget/widget.html" class="flex items-center space-x-2 p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out">
+                        <i class="fas fa-clipboard-list"></i>
+                        <span class="menu flex-1 flex items-center justify-between">
+                            Widget
+                            <span class="ml-2 flex items-center bg-red-500 text-white px-2 py-0.5 rounded-full text-xs font-semibold">
+                                <i class="fas fa-star mr-1"></i> New
+                            </span>
+                        </span>
+                    </a>
+                </li>      
+                
+                <!-- Chart with Submenu -->
+                <li class="menu-item">
+                <div>
+                    <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="Chart">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>Chart</span>
+                        </div>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <ul id="Chart" class="mt-2 ml-6 space-y-1 hidden">
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/chart/line.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Line</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/chart/pie.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Pie</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/chart/bar.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Bar</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/chart/area.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Area</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/chart/donut.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Donut</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/chart/stackedbar.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Stacked Bar</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/chart/interactivearea.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Chart Interactive Area</a></li>
+                    </ul>
+                </div>
+                </li>
+
+                <!-- Form with Submenu -->
+                <li class="menu-item">
+                <div>
+                    <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="formSubmenu">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-edit"></i>
+                            <span>Form</span>
+                        </div>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <ul id="formSubmenu" class="mt-2 ml-6 space-y-1 hidden">
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/form/form.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Form 1</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/form/forms.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Form 2</a></li>
+                    </ul>
+                </div>
+                </li>
+                
+                <!-- Table with Submenu -->
+                <li class="menu-item">
+                <div>
+                    <button class="flex items-center justify-between w-full p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none" data-toggle="submenu" data-target="tableSubmenu">
+                        <div class="flex items-center space-x-2">
+                            <i class="fas fa-table"></i>
+                            <span>Table</span>
+                        </div>
+                        <i class="fas fa-chevron-down transition-transform duration-300"></i>
+                    </button>
+                    <ul id="tableSubmenu" class="mt-2 ml-6 space-y-1 hidden">
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/table/show-search.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Show Search</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/table/checkbox.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table CheckBox</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/table/making-doc.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Making Doc</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/table/modal-recycle.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Modal Recycle</a></li>
+                        <li class="submenu-item"><span class="submenu-item-icon"></span><a href="pages/table/select2.html" class="w-full p-1 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out focus:outline-none">Table Select2</a></li>
+                    </ul>
+                </div>
+                </li>
+            </ul>
+
+            <!-- Logout Button -->
+            <div class="menu-item mt-6">
+                <a href="#" class="flex items-center space-x-2 p-2 rounded hover:bg-blue-600 hover:text-white transition duration-300 ease-in-out">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <span>Logout</span>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- End Sidebar -->
+
+    <!-- Content Area -->
+    <div class="ml-0 md:ml-64 p-6 flex-1">
+        <!-- Header with aligned text -->
+        <div class="flex justify-between items-center">
+            <h1 class="text-2xl md:text-3xl">Dashboard</h1>
+            <p class="text-sm md:text-lg text-gray-400">Dashboard v1 / Home.</p>
+        </div>
+
+                <!-- CARD 2 COLUMN GLOW TEXT BLUE-->
+                <div class="grid grid-cols-1 sm:gap-6 md:grid-cols-2 gap-6 sm:mt-8 mb-8 mt-3">
+                    <!-- Total Transactions Card -->
+                    <div
+                        class="bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg flex items-center hover:bg-gray-700 transition duration-300" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-credit-card text-3xl mr-4"></i>
+                        <div>
+                            <h2 class="text-md sm:text-lg font-semibold mb-2 sm:mb-4 text-gray-200 ">Total
+                                Transactions</h2>
+                            <p class="text-2xl sm:text-3xl font-bold" data-aos-delay="100">Rp. 1,901,281</p>
+                            <p class="text-gray-400 mt-1 sm:mt-2 text-xs sm:text-sm">As of August 20, 2024</p>
+                        </div>
+                    </div>
+        
+                    <!-- Total Students Card -->
+                    <div
+                        class="bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg flex items-center hover:bg-gray-700 transition duration-300" data-aos="fade-up" data-aos-delay="200">
+                        <i class="fas fa-users text-3xl mr-4"></i>
+                        <div>
+                            <h2 class="text-md sm:text-lg font-semibold mb-2 sm:mb-4 text-gray-200 ">Total Students
+                            </h2>
+                            <p class="text-2xl sm:text-3xl font-bold" data-aos-delay="100">567</p>
+                            <p class="text-gray-400 mt-1 sm:mt-2 text-xs sm:text-sm">As of August 20, 2024</p>
+                        </div>
+                    </div>
+                </div>
+        
+                
+        
+                  <!-- CARD 3 COLUMN GLOW TEXT-WHITE-->
+                  <div class="grid grid-cols-1 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:mt-8 mb-8 mt-3">
+                    <!-- Card 1: Total Transactions -->
+                    <div class="bg-gradient-to-r bg-gray-800 p-6 rounded-lg shadow-lg flex items-center hover:bg-gray-700 transition duration-300" data-aos="fade-up" data-aos-delay="200">
+                        <div class="bg-green-600 p-4 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-dollar-sign text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-semibold mb-2 text-white">Total Revenue</h2>
+                            <p class="text-3xl font-bold text-white">Rp. 3,456,789</p>
+                        </div>
+                    </div>
+        
+                    <!-- Card 2: New Users -->
+                    <div class="bg-gradient-to-r bg-gray-800 p-6 rounded-lg shadow-lg flex items-center hover:bg-gray-700 transition duration-300" data-aos="fade-up" data-aos-delay="200">
+                        <div class="bg-red-600 p-4 rounded-full flex items-center justify-center mr-4 ">
+                            <i class="fas fa-user-plus text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-semibold mb-2 text-white">New Users</h2>
+                            <p class="text-3xl font-bold text-white">250</p>
+                        </div>
+                    </div>
+        
+                    <!-- Card 3: Sales Growth -->
+                    <div class="bg-gradient-to-r bg-gray-800 p-6 rounded-lg shadow-lg flex items-center hover:bg-gray-700 transition duration-300" data-aos="fade-up" data-aos-delay="200">
+                        <div class="bg-purple-600 p-4 rounded-full flex items-center justify-center mr-4 ">
+                            <i class="fas fa-chart-line text-white text-2xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-semibold mb-2 text-white">Sales Growth</h2>
+                            <p class="text-3xl font-bold text-white">15% Increase</p>
+                        </div>
+                    </div>
+                </div>
+        
+        
+                <!-- CARD 3 COLUMN FULL BG CARD-->
+                <div class="grid grid-cols-1 sm:gap-6 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:mt-8 mb-8 mt-3">
+                    <!-- Card 1: Total Revenue -->
+                    <div class="bg-gradient-to-r from-blue-500 to-blue-700 p-6 rounded-lg shadow-lg flex items-center" data-aos="fade-up" data-aos-delay="200">
+                        <div class="bg-white w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-dollar-sign text-blue-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-semibold mb-2 text-white">Total Revenue</h2>
+                            <p class="text-3xl font-bold text-white">Rp. 4,567,890</p>
+                        </div>
+                    </div>
+                
+                    <!-- Card 2: New Users -->
+                    <div class="bg-gradient-to-r from-green-500 to-green-700 p-6 rounded-lg shadow-lg flex items-center" data-aos="fade-up" data-aos-delay="200">
+                        <div class="bg-white w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-user-plus text-green-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-semibold mb-2 text-white">New Users</h2>
+                            <p class="text-3xl font-bold text-white">300</p>
+                        </div>
+                    </div>
+                
+                    <!-- Card 3: Sales Growth -->
+                    <div class="bg-gradient-to-r from-purple-500 to-purple-700 p-6 rounded-lg shadow-lg flex items-center" data-aos="fade-up" data-aos-delay="200">
+                        <div class="bg-white w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-chart-line text-purple-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-semibold mb-2 text-white">Sales Growth</h2>
+                            <p class="text-3xl font-bold text-white">25% Increase</p>
+                        </div>
+                    </div>
+                </div>
+                
+        
+        
+                <!-- CARD 2 COLUMN FULL BG CARD-->
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 sm:mt-8 mb-8 mt-3">
+                    <!-- Card 1: Total Revenue -->
+                    <div class="bg-gradient-to-r from-teal-500 to-teal-700 p-6 rounded-lg shadow-lg flex items-center " data-aos="fade-up" data-aos-delay="200">
+                        <div class="bg-white w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-dollar-sign text-teal-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-semibold mb-2 text-white">Total Revenue</h2>
+                            <p class="text-3xl font-bold text-white">Rp. 3,456,789</p>
+                        </div>
+                    </div>
+        
+                    <!-- Card 2: Active Users -->
+                    <div class="bg-gradient-to-r from-yellow-500 to-yellow-700 p-6 rounded-lg shadow-lg flex items-center " data-aos="fade-up" data-aos-delay="200">
+                        <div class="bg-white w-12 h-12 rounded-full flex items-center justify-center mr-4">
+                            <i class="fas fa-users text-yellow-600 text-2xl"></i>
+                        </div>
+                        <div>
+                            <h2 class="text-lg font-semibold mb-2 text-white">Active Users</h2>
+                            <p class="text-3xl font-bold text-white">1,234</p>
+                        </div>
+                    </div>
+                </div>
+        
+        
+                <!-- CARD 4 COLUMN ORIGINAL DESIGN-->
+                <div class="grid grid-cols-1 md:grid-cols-2 md:grid-cols-3 md:grid-cols-4 gap-6 sm:mt-8 mb-8 mt-3">
+                    <!-- Card 1: Revenue Overview -->
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg flex items-center hover:bg-gray-700 " data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex-1">
+                            <h2 class="text-lg font-semibold mb-2 text-white">Revenue Overview</h2>
+                            <p class="text-3xl font-bold text-white">Rp. 4,789,654</p>
+                            <p class="text-gray-400 mt-1 text-sm">As of August 25, 2024</p>
+                        </div>
+                        <div class="bg-blue-600 w-12 h-12 rounded-full rounded-full flex items-center justify-center ml-4">
+                            <i class="fas fa-dollar-sign text-white text-2xl"></i>
+                        </div>
+                    </div>
+        
+                    <!-- Card 2: User Engagement -->
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg flex items-center hover:bg-gray-700 " data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex-1">
+                            <h2 class="text-lg font-semibold mb-2 text-white">User Engagement</h2>
+                            <p class="text-3xl font-bold text-white">2,345 Active Users</p>
+                            <p class="text-gray-400 mt-1 text-sm">As of August 25, 2024</p>
+                        </div>
+                        <div class="bg-green-600 w-12 h-12 rounded-full rounded-full flex items-center justify-center ml-4">
+                            <i class="fas fa-users text-white text-2xl"></i>
+                        </div>
+                    </div>
+        
+                    <!-- Card 3: Monthly Growth -->
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg flex items-center hover:bg-gray-700 " data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex-1">
+                            <h2 class="text-lg font-semibold mb-2 text-white">Monthly Growth</h2>
+                            <p class="text-3xl font-bold text-white">25% Increase</p>
+                            <p class="text-gray-400 mt-1 text-sm">Compared to Last Month</p>
+                        </div>
+                        <div class="bg-red-600 w-12 h-12 rounded-full rounded-full flex items-center justify-center ml-4">
+                            <i class="fas fa-chart-line text-white text-2xl"></i>
+                        </div>
+                    </div>
+        
+                    <!-- Card 4: Support Tickets -->
+                    <div class="bg-gray-800 p-6 rounded-lg shadow-lg flex items-center hover:bg-gray-700 " data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex-1">
+                            <h2 class="text-lg font-semibold mb-2 text-white">Support Tickets</h2>
+                            <p class="text-3xl font-bold text-white">42 Open Tickets</p>
+                            <p class="text-gray-400 mt-1 text-sm">Pending Resolution</p>
+                        </div>
+                        <div class="bg-purple-600 w-12 h-12 rounded-full rounded-full flex items-center justify-center ml-4">
+                            <i class="fas fa-ticket-alt text-white text-2xl"></i>
+                        </div>
+                    </div>
+                </div>
+        
+                 <!-- CARD 4 COLUMN WITH TEXT -->
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                    <!-- Card 1 -->
+                    <div class="card bg-gray-800 p-4 rounded-lg shadow-lg hover:bg-gray-700" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center justify-between">
+                            <i class="fas fa-cogs fa-2x text-blue-500"></i>
+                            <h2 class="text-xl font-semibold">Card 1</h2>
+                        </div>
+                        <p class="mt-2 card-content">This is a description of the first card. It provides some information about the content.</p>
+                        <a href="#" class="mt-4 inline-block bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-500 transition">Learn More</a>
+                    </div>
+        
+                    <!-- Card 2 -->
+                    <div class="card bg-gray-800 p-4 rounded-lg shadow-lg hover:bg-gray-700" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center justify-between">
+                            <i class="fas fa-chart-line fa-2x text-green-500"></i>
+                            <h2 class="text-xl font-semibold">Card 2</h2>
+                        </div>
+                        <p class="mt-2 card-content">This card contains information about trends and analytics. It is visually distinct.</p>
+                        <a href="#" class="mt-4 inline-block bg-green-600 text-white py-2 px-4 rounded hover:bg-green-500 transition">Explore</a>
+                    </div>
+        
+                    <!-- Card 3 -->
+                    <div class="card bg-gray-800 p-4 rounded-lg shadow-lg hover:bg-gray-700" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center justify-between">
+                            <i class="fas fa-user fa-2x text-red-500"></i>
+                            <h2 class="text-xl font-semibold">Card 3</h2>
+                        </div>
+                        <p class="mt-2 card-content">Details about user profiles and accounts can be managed here. This card stands out with its own style.</p>
+                        <a href="#" class="mt-4 inline-block bg-red-600 text-white py-2 px-4 rounded hover:bg-red-500 transition">View Profiles</a>
+                    </div>
+        
+                    <!-- Card 4 -->
+                    <div class="card bg-gray-800 p-4 rounded-lg shadow-lg hover:bg-gray-700" data-aos="fade-up" data-aos-delay="200">
+                        <div class="flex items-center justify-between">
+                            <i class="fas fa-bell fa-2x text-purple-500"></i>
+                            <h2 class="text-xl font-semibold">Card 4</h2>
+                        </div>
+                        <p class="mt-2 card-content">This card provides notifications and alerts. It's designed to grab attention with its unique style.</p>
+                        <a href="#" class="mt-4 inline-block bg-purple-600 text-white py-2 px-4 rounded hover:bg-purple-500 transition">See Alerts</a>
+                    </div>
+                </div>
+        
+    </div>
+    <!-- End Content -->
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white1 py-4">
+        <div class="container mx-auto text-center">
+            <p>&copy; 2024 MyApp. All rights reserved.</p>
+        </div>
+    </footer>
+    <!-- End Footer -->
+    <script>
+           // SCRIPT SIDEBAR 
+        // Mobile Sidebar Toggle
+        const sidebar = document.getElementById('sidebar');
+        const toggleButton = document.getElementById('toggleButton');
+
+        toggleButton.addEventListener('click', () => {
+            sidebar.classList.toggle('-translate-x-full');
+        });
+
+        // Submenu Toggle with Icon Rotation
+        document.addEventListener('click', function(event) {
+            if (event.target.dataset.toggle === 'submenu') {
+                const submenuId = event.target.dataset.target;
+                const submenu = document.getElementById(submenuId);
+                submenu.classList.toggle('hidden');
+                
+                // Rotate Icon
+                const icon = event.target.querySelector('.fa-chevron-down');
+                icon.classList.toggle('rotate-180');
+            }
+        });
+
+        // Search Functionality
+        document.getElementById('searchInput').addEventListener('input', function() {
+            const filter = this.value.toLowerCase();
+            const menuItems = document.querySelectorAll('.menu-item');
+            const submenuItems = document.querySelectorAll('.submenu-item');
+
+            // Filter menu items
+            menuItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                if (text.includes(filter)) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Filter submenu items
+            submenuItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+                const parentMenuItem = item.closest('.menu-item');
+                if (text.includes(filter)) {
+                    item.style.display = '';
+                    parentMenuItem.style.display = ''; // Show parent if submenu item is visible
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Hide parent menu item if no submenu items are visible
+            menuItems.forEach(item => {
+                const submenus = item.querySelectorAll('.submenu-item');
+                if (submenus.length > 0) {
+                    const visibleSubmenuItems = Array.from(submenus).some(submenu => submenu.style.display !== 'none');
+                    if (!visibleSubmenuItems) {
+                        item.style.display = 'none';
+                    }
+                }
+            });
+        });
+        // SCRIPT END SIDEBAR 
+
+    </script>
+    <!-- AOS Initialization -->
+    <script src="assets/aos/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+        });
+    </script>
+</body>
+</html>
